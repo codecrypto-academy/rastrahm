@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Logs - Chrome Wallet Extension</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .debug-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .debug-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .log-output {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .log-entry {
+            margin: 5px 0;
+            padding: 8px;
+            border-left: 3px solid #007bff;
+            background: white;
+            border-radius: 3px;
+        }
+        .log-error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+        .log-warning {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+        }
+        .log-success {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .step {
+            margin: 10px 0;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+        }
+        .step-number {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Debug de Sistema de Logs</h1>
+        <p>Esta página ayuda a diagnosticar problemas con el sistema de logs de la extensión.</p>
+
+        <div class="debug-section">
+            <h3>📋 Pasos de Prueba</h3>
+            <div class="step">
+                <span class="step-number">1.</span> Verificar conexión con background script
+            </div>
+            <div class="step">
+                <span class="step-number">2.</span> Generar wallet (debería crear logs)
+            </div>
+            <div class="step">
+                <span class="step-number">3.</span> Verificar logs en background script
+            </div>
+            <div class="step">
+                <span class="step-number">4.</span> Verificar logs en chrome.storage.local
+            </div>
+            <div class="step">
+                <span class="step-number">5.</span> Probar carga de logs desde storage
+            </div>
+        </div>
+
+        <div class="debug-section">
+            <h3>1. Verificar Conexión</h3>
+            <button onclick="testConnection()">Probar Conexión</button>
+            <div id="connection-status" class="status" style="display: none;"></div>
+        </div>
+
+        <div class="debug-section">
+            <h3>2. Generar Wallet y Logs</h3>
+            <button onclick="generateWallet()">Generar Wallet</button>
+            <button onclick="importAccount()">Importar Cuenta</button>
+            <button onclick="sendTransaction()">Enviar Transacción</button>
+            <div id="wallet-status" class="status" style="display: none;"></div>
+        </div>
+
+        <div class="debug-section">
+            <h3>3. Verificar Logs en Background Script</h3>
+            <button onclick="getLogsFromBackground()">Obtener Logs del Background</button>
+            <div id="background-logs-status" class="status" style="display: none;"></div>
+        </div>
+
+        <div class="debug-section">
+            <h3>4. Verificar Chrome Storage Local</h3>
+            <button onclick="checkChromeStorage()">Verificar Storage</button>
+            <button onclick="clearChromeStorage()">Limpiar Storage</button>
+            <div id="storage-status" class="status" style="display: none;"></div>
+        </div>
+
+        <div class="debug-section">
+            <h3>5. Probar Carga de Logs</h3>
+            <button onclick="loadLogsFromStorage()">Cargar Logs desde Storage</button>
+            <button onclick="simulateLoadLogs()">Simular loadLogs()</button>
+            <div id="load-status" class="status" style="display: none;"></div>
+        </div>
+
+        <div class="debug-section">
+            <h3>📊 Logs Obtenidos</h3>
+            <div id="logs-output" class="log-output">
+                <p>Los logs aparecerán aquí...</p>
+            </div>
+        </div>
+
+        <div class="debug-section">
+            <h3>🔧 Información de Debug</h3>
+            <div id="debug-info" class="log-output">
+                <p>Información de debug aparecerá aquí...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let extensionId = null;
+        let debugInfo = [];
+
+        // Detectar el ID de la extensión
+        function detectExtension() {
+            if (typeof chrome !== 'undefined' && chrome.runtime) {
+                extensionId = chrome.runtime.id;
+                addDebugInfo('Extension ID detectado: ' + extensionId);
+                return true;
+            }
+            addDebugInfo('Error: No se detectó la extensión');
+            return false;
+        }
+
+        // Función para agregar información de debug
+        function addDebugInfo(message) {
+            const timestamp = new Date().toLocaleString();
+            debugInfo.push(`[${timestamp}] ${message}`);
+            updateDebugInfo();
+        }
+
+        // Función para actualizar la información de debug
+        function updateDebugInfo() {
+            const output = document.getElementById('debug-info');
+            output.innerHTML = debugInfo.join('<br>');
+        }
+
+        // Función para mostrar estado
+        function showStatus(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = `status ${type}`;
+            element.textContent = message;
+        }
+
+        // Función para mostrar logs
+        function displayLogs(logs, title = 'Logs') {
+            const output = document.getElementById('logs-output');
+            if (!logs || logs.length === 0) {
+                output.innerHTML = `<h4>${title}</h4><p>No hay logs disponibles</p>`;
+                return;
+            }
+
+            let html = `<h4>${title} (${logs.length} entradas)</h4>`;
+            logs.forEach(log => {
+                const levelClass = log.level === 'error' ? 'log-error' : 
+                                 log.level === 'warn' ? 'log-warning' : 
+                                 log.level === 'info' ? 'log-success' : 'log-entry';
+                
+                const timestamp = new Date(log.timestamp).toLocaleString();
+                html += `
+                    <div class="log-entry ${levelClass}">
+                        <strong>[${log.type}]</strong> ${log.message}
+                        <br><small>Timestamp: ${timestamp} | Level: ${log.level} | ID: ${log.id}</small>
+                        ${log.data && Object.keys(log.data).length > 0 ? 
+                            `<br><small>Data: ${JSON.stringify(log.data, null, 2)}</small>` : ''}
+                    </div>
+                `;
+            });
+            output.innerHTML = html;
+        }
+
+        // 1. Probar conexión
+        async function testConnection() {
+            addDebugInfo('Iniciando prueba de conexión...');
+            
+            if (!detectExtension()) {
+                showStatus('connection-status', 'Error: No se detectó la extensión', 'error');
+                return;
+            }
+
+            try {
+                const response = await chrome.runtime.sendMessage({ type: 'PING' });
+                addDebugInfo('Respuesta PING recibida: ' + JSON.stringify(response));
+                
+                if (response && response.success) {
+                    showStatus('connection-status', '✅ Conexión exitosa con background script', 'success');
+                    addDebugInfo('Conexión exitosa');
+                } else {
+                    showStatus('connection-status', '❌ Error en la respuesta del background script', 'error');
+                    addDebugInfo('Error en respuesta: ' + JSON.stringify(response));
+                }
+            } catch (error) {
+                showStatus('connection-status', `❌ Error de conexión: ${error.message}`, 'error');
+                addDebugInfo('Error de conexión: ' + error.message);
+            }
+        }
+
+        // 2. Generar wallet
+        async function generateWallet() {
+            addDebugInfo('Generando wallet...');
+            try {
+                const response = await chrome.runtime.sendMessage({ type: 'GENERATE_WALLET' });
+                addDebugInfo('Respuesta GENERATE_WALLET: ' + JSON.stringify(response));
+                
+                if (response && response.success) {
+                    showStatus('wallet-status', '✅ Wallet generado correctamente', 'success');
+                    addDebugInfo('Wallet generado exitosamente');
+                    // Obtener logs después de generar wallet
+                    setTimeout(getLogsFromBackground, 1000);
+                } else {
+                    showStatus('wallet-status', `❌ Error al generar wallet: ${response.error || 'Error desconocido'}`, 'error');
+                    addDebugInfo('Error al generar wallet: ' + (response.error || 'Error desconocido'));
+                }
+            } catch (error) {
+                showStatus('wallet-status', `❌ Error: ${error.message}`, 'error');
+                addDebugInfo('Error al generar wallet: ' + error.message);
+            }
+        }
+
+        // 2b. Importar cuenta
+        async function importAccount() {
+            addDebugInfo('Importando cuenta...');
+            const testPrivateKey = '0x1234567890123456789012345678901234567890123456789012345678901234';
+            const testAccountName = 'Test Account';
+
+            try {
+                const response = await chrome.runtime.sendMessage({ 
+                    type: 'IMPORT_ACCOUNT',
+                    data: {
+                        privateKey: testPrivateKey,
+                        accountName: testAccountName
+                    }
+                });
+                addDebugInfo('Respuesta IMPORT_ACCOUNT: ' + JSON.stringify(response));
+                
+                if (response && response.success) {
+                    showStatus('wallet-status', '✅ Cuenta importada correctamente', 'success');
+                    addDebugInfo('Cuenta importada exitosamente');
+                    // Obtener logs después de importar cuenta
+                    setTimeout(getLogsFromBackground, 1000);
+                } else {
+                    showStatus('wallet-status', `❌ Error al importar cuenta: ${response.error || 'Error desconocido'}`, 'error');
+                    addDebugInfo('Error al importar cuenta: ' + (response.error || 'Error desconocido'));
+                }
+            } catch (error) {
+                showStatus('wallet-status', `❌ Error: ${error.message}`, 'error');
+                addDebugInfo('Error al importar cuenta: ' + error.message);
+            }
+        }
+
+        // 2c. Enviar transacción
+        async function sendTransaction() {
+            addDebugInfo('Enviando transacción...');
+            try {
+                const response = await chrome.runtime.sendMessage({ 
+                    type: 'SEND_TRANSACTION',
+                    data: {
+                        transaction: {
+                            to: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+                            value: '0.1',
+                            gas: '0x5208'
+                        }
+                    }
+                });
+                addDebugInfo('Respuesta SEND_TRANSACTION: ' + JSON.stringify(response));
+                
+                if (response && response.success) {
+                    showStatus('wallet-status', `✅ Transacción enviada: ${response.hash}`, 'success');
+                    addDebugInfo('Transacción enviada exitosamente: ' + response.hash);
+                    // Obtener logs después de enviar transacción
+                    setTimeout(getLogsFromBackground, 1000);
+                } else {
+                    showStatus('wallet-status', `❌ Error al enviar transacción: ${response.error || 'Error desconocido'}`, 'error');
+                    addDebugInfo('Error al enviar transacción: ' + (response.error || 'Error desconocido'));
+                }
+            } catch (error) {
+                showStatus('wallet-status', `❌ Error: ${error.message}`, 'error');
+                addDebugInfo('Error al enviar transacción: ' + error.message);
+            }
+        }
+
+        // 3. Obtener logs del background script
+        async function getLogsFromBackground() {
+            addDebugInfo('Obteniendo logs del background script...');
+            try {
+                const response = await chrome.runtime.sendMessage({ type: 'GET_LOGS' });
+                addDebugInfo('Respuesta GET_LOGS: ' + JSON.stringify(response));
+                
+                if (response && response.success) {
+                    showStatus('background-logs-status', `✅ Logs obtenidos del background: ${response.logs.length} entradas`, 'success');
+                    addDebugInfo(`Logs obtenidos del background: ${response.logs.length} entradas`);
+                    displayLogs(response.logs, 'Logs del Background Script');
+                } else {
+                    showStatus('background-logs-status', `❌ Error al obtener logs: ${response.error || 'Error desconocido'}`, 'error');
+                    addDebugInfo('Error al obtener logs: ' + (response.error || 'Error desconocido'));
+                }
+            } catch (error) {
+                showStatus('background-logs-status', `❌ Error: ${error.message}`, 'error');
+                addDebugInfo('Error al obtener logs: ' + error.message);
+            }
+        }
+
+        // 4. Verificar chrome storage
+        async function checkChromeStorage() {
+            addDebugInfo('Verificando chrome.storage.local...');
+            try {
+                const result = await chrome.storage.local.get('codecrypto_logs');
+                addDebugInfo('Resultado de chrome.storage.local.get: ' + JSON.stringify(result));
+                
+                const logs = result.codecrypto_logs || [];
+                showStatus('storage-status', `✅ Storage verificado: ${logs.length} logs en chrome.storage.local`, 'success');
+                addDebugInfo(`Storage verificado: ${logs.length} logs encontrados`);
+                displayLogs(logs, 'Logs en Chrome Storage');
+            } catch (error) {
+                showStatus('storage-status', `❌ Error al verificar storage: ${error.message}`, 'error');
+                addDebugInfo('Error al verificar storage: ' + error.message);
+            }
+        }
+
+        // 4b. Limpiar chrome storage
+        async function clearChromeStorage() {
+            addDebugInfo('Limpiando chrome.storage.local...');
+            try {
+                await chrome.storage.local.clear();
+                addDebugInfo('Chrome storage limpiado');
+                showStatus('storage-status', '✅ Chrome storage limpiado', 'success');
+            } catch (error) {
+                showStatus('storage-status', `❌ Error al limpiar storage: ${error.message}`, 'error');
+                addDebugInfo('Error al limpiar storage: ' + error.message);
+            }
+        }
+
+        // 5. Cargar logs desde storage
+        async function loadLogsFromStorage() {
+            addDebugInfo('Cargando logs desde storage...');
+            try {
+                const result = await chrome.storage.local.get('codecrypto_logs');
+                const logs = result.codecrypto_logs || [];
+                addDebugInfo(`Logs cargados desde storage: ${logs.length} entradas`);
+                showStatus('load-status', `✅ Logs cargados desde storage: ${logs.length} entradas`, 'success');
+                displayLogs(logs, 'Logs Cargados desde Storage');
+            } catch (error) {
+                showStatus('load-status', `❌ Error al cargar logs: ${error.message}`, 'error');
+                addDebugInfo('Error al cargar logs: ' + error.message);
+            }
+        }
+
+        // 5b. Simular loadLogs() del WalletProvider
+        async function simulateLoadLogs() {
+            addDebugInfo('Simulando loadLogs() del WalletProvider...');
+            try {
+                const response = await chrome.runtime.sendMessage({ type: 'GET_LOGS' });
+                if (response.success) {
+                    addDebugInfo(`Simulación exitosa: ${response.logs.length} logs obtenidos`);
+                    showStatus('load-status', `✅ Simulación exitosa: ${response.logs.length} logs`, 'success');
+                    displayLogs(response.logs, 'Logs Simulados (WalletProvider)');
+                } else {
+                    addDebugInfo('Error en simulación: ' + (response.error || 'Error desconocido'));
+                    showStatus('load-status', `❌ Error en simulación: ${response.error || 'Error desconocido'}`, 'error');
+                }
+            } catch (error) {
+                addDebugInfo('Error en simulación: ' + error.message);
+                showStatus('load-status', `❌ Error en simulación: ${error.message}`, 'error');
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            addDebugInfo('Página de debug cargada');
+            if (detectExtension()) {
+                addDebugInfo('Extensión detectada, listo para pruebas');
+            } else {
+                addDebugInfo('No se detectó la extensión');
+            }
+        });
+    </script>
+</body>
+</html>

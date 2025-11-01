@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCrypto Wallet - Pruebas</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #007BFF;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        
+        .test-section h2 {
+            color: #333;
+            margin-top: 0;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+        }
+        
+        .test-button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        
+        .test-button:hover {
+            background: #0056b3;
+        }
+        
+        .test-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .test-results {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #007BFF;
+        }
+        
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        .test-result.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .test-result.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .test-result.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .provider-info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #007BFF;
+        }
+        
+        .provider-info h3 {
+            margin-top: 0;
+            color: #007BFF;
+        }
+        
+        .provider-info pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-connected {
+            background: #28a745;
+        }
+        
+        .status-disconnected {
+            background: #dc3545;
+        }
+        
+        .status-unknown {
+            background: #ffc107;
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .test-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .test-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .clear-button {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .clear-button:hover {
+            background: #545b62;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 CodeCrypto Wallet - Suite de Pruebas</h1>
+        
+        <div class="provider-info" style="background: #fff3cd; border-left-color: #ffc107;">
+            <h3>ℹ️ Información Importante</h3>
+            <p><strong>Estás viendo este archivo como archivo local (file://)</strong></p>
+            <p>Para probar el provider web (window.ethereum/window.codecrypto):</p>
+            <ul>
+                <li>Sirve este archivo desde un servidor HTTP local (por ejemplo: <code>python -m http.server 8000</code>)</li>
+                <li>Abre <code>http://localhost:8000/test.html</code> en el navegador</li>
+            </ul>
+            <p><strong>Las pruebas de logs y backend funcionarán correctamente desde aquí</strong> porque usan <code>chrome.runtime</code> directamente.</p>
+        </div>
+        
+        <div class="provider-info">
+            <h3>📡 Estado del Provider</h3>
+            <div id="provider-status">
+                <span class="status-indicator status-unknown"></span>
+                <span id="provider-text">Verificando provider...</span>
+            </div>
+            <pre id="provider-details">Cargando información del provider...</pre>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔌 Pruebas de Conexión</h2>
+            <p>Verifica que el provider esté disponible y funcione correctamente.</p>
+            <button class="test-button" onclick="testProviderDetection()">Detectar Provider</button>
+            <button class="test-button" onclick="testConnection()">Probar Conexión</button>
+            <button class="test-button" onclick="testAccounts()">Obtener Cuentas</button>
+            <button class="test-button" onclick="testChainId()">Obtener Chain ID</button>
+            <div class="test-results" id="connection-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>💰 Pruebas de Balance</h2>
+            <p>Verifica la obtención de balances de las cuentas.</p>
+            <button class="test-button" onclick="testGetBalance()">Obtener Balance</button>
+            <button class="test-button" onclick="testGetAllBalances()">Obtener Todos los Balances</button>
+            <div class="test-results" id="balance-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>✍️ Pruebas de Firma</h2>
+            <p>Verifica la firma de mensajes y datos tipados.</p>
+            <button class="test-button" onclick="testSignMessage()">Firmar Mensaje</button>
+            <button class="test-button" onclick="testSignTypedData()">Firmar Datos Tipados (EIP-712)</button>
+            <div class="test-results" id="sign-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📤 Pruebas de Transacciones</h2>
+            <p>Verifica el envío de transacciones (solo simulación).</p>
+            <button class="test-button" onclick="testSendTransaction()">Simular Transacción</button>
+            <button class="test-button" onclick="testGasEstimation()">Estimar Gas</button>
+            <div class="test-results" id="transaction-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🌐 Pruebas de Red</h2>
+            <p>Verifica el cambio de red y configuración.</p>
+            <button class="test-button" onclick="testNetworkInfo()">Información de Red</button>
+            <button class="test-button" onclick="testSwitchNetwork()">Cambiar Red</button>
+            <div class="test-results" id="network-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📡 Pruebas de Eventos</h2>
+            <p>Verifica que los eventos del provider funcionen correctamente.</p>
+            <button class="test-button" onclick="testEvents()">Configurar Eventos</button>
+            <button class="test-button" onclick="testEventListeners()">Probar Listeners</button>
+            <div class="test-results" id="event-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📋 Pruebas de Sistema de Logs</h2>
+            <p><strong>Nota:</strong> Las pruebas de logs requieren acceso directo a la extensión. Usa <code>debug-logs.html</code> o la consola del popup para probar logs.</p>
+            <p style="background: #fff3cd; padding: 10px; border-radius: 5px; border-left: 4px solid #ffc107;">
+                ℹ️ Las páginas web no pueden usar <code>chrome.runtime.sendMessage()</code> directamente sin el Extension ID. 
+                Para probar logs, abre <code>debug-logs.html</code> directamente en el navegador.
+            </p>
+            <button class="test-button" onclick="testBackgroundCommunication()">Probar Comunicación Background</button>
+            <button class="test-button" onclick="testGetLogs()">Obtener Logs</button>
+            <button class="test-button" onclick="testClearLogs()">Limpiar Logs</button>
+            <div class="test-results" id="logs-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔧 Pruebas Avanzadas</h2>
+            <p>Pruebas específicas para funcionalidades avanzadas del wallet.</p>
+            <button class="test-button" onclick="testEIP6963()">Probar EIP-6963</button>
+            <button class="test-button" onclick="testEIP1559()">Probar EIP-1559</button>
+            <button class="test-button" onclick="testENS()">Probar ENS</button>
+            <p style="background: #fff3cd; padding: 10px; border-radius: 5px; border-left: 4px solid #ffc107; margin-top: 15px;">
+                ℹ️ <strong>Importar Cuenta y Transacciones Reales</strong> requieren acceso directo a la extensión. 
+                Usa <code>debug-logs.html</code> para probar estas funcionalidades o usa la consola del popup.
+            </p>
+            <div class="test-results" id="advanced-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🚀 Pruebas Completas</h2>
+            <p>Ejecuta todas las pruebas en secuencia.</p>
+            <button class="test-button" onclick="runAllTests()" style="background: #28a745;">Ejecutar Todas las Pruebas</button>
+            <button class="clear-button" onclick="clearAllResults()">Limpiar Resultados</button>
+            <div class="test-results" id="all-tests-results"></div>
+        </div>
+        
+        <div class="test-grid">
+            <div class="test-card">
+                <h3>📊 Estadísticas de Pruebas</h3>
+                <div id="test-stats">
+                    <p>Total de pruebas: <span id="total-tests">0</span></p>
+                    <p>Exitosas: <span id="successful-tests">0</span></p>
+                    <p>Fallidas: <span id="failed-tests">0</span></p>
+                    <p>Porcentaje de éxito: <span id="success-rate">0%</span></p>
+                </div>
+            </div>
+            
+            <div class="test-card">
+                <h3>🔍 Información del Sistema</h3>
+                <div id="system-info">
+                    <p>User Agent: <span id="user-agent"></span></p>
+                    <p>Timestamp: <span id="timestamp"></span></p>
+                    <p>URL: <span id="current-url"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let provider = null;
+        let testStats = {
+            total: 0,
+            successful: 0,
+            failed: 0
+        };
+        
+        // Función helper para obtener el provider correcto
+        function getWalletProvider() {
+            // Siempre priorizar window.codecrypto si existe
+            return window.codecrypto || provider;
+        }
+        
+        // Función para verificar si el provider está disponible y funcionando
+        function isProviderAvailable() {
+            const walletProvider = getWalletProvider();
+            if (!walletProvider) {
+                return { available: false, reason: 'No hay provider disponible' };
+            }
+            
+            // Verificar si tiene los métodos necesarios
+            if (typeof walletProvider.request !== 'function') {
+                return { available: false, reason: 'Provider no tiene método request' };
+            }
+            
+            return { available: true, reason: 'Provider disponible' };
+        }
+
+        // Puente genérico para hablar con background vía content script
+        function sendExtensionRequest(method, data = {}) {
+            return new Promise((resolve, reject) => {
+                const id = Math.random().toString(36).substr(2, 9);
+
+                const handleMessage = (event) => {
+                    if (event.source !== window) return;
+                    const msg = event.data;
+                    if (!msg || msg.type !== 'CODECRYPTO_RESPONSE' || msg.id !== id) return;
+                    window.removeEventListener('message', handleMessage);
+                    // msg.result es el objeto { success, ... }
+                    if (msg.error) {
+                        reject(new Error(msg.error.message || 'Error desconocido'));
+                    } else if (msg.result && msg.result.success) {
+                        resolve(msg.result);
+                    } else {
+                        reject(new Error((msg.result && msg.result.error) || 'Error en respuesta'));
+                    }
+                };
+
+                window.addEventListener('message', handleMessage);
+
+                window.postMessage({
+                    type: 'CODECRYPTO_REQUEST',
+                    id,
+                    method,
+                    data
+                }, '*');
+
+                setTimeout(() => {
+                    window.removeEventListener('message', handleMessage);
+                    reject(new Error('Timeout esperando respuesta de la extensión'));
+                }, 15000);
+            });
+        }
+        
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSystemInfo();
+            detectProvider();
+        });
+        
+        // Actualizar información del sistema
+        function updateSystemInfo() {
+            document.getElementById('user-agent').textContent = navigator.userAgent;
+            document.getElementById('timestamp').textContent = new Date().toLocaleString();
+            document.getElementById('current-url').textContent = window.location.href;
+        }
+        
+        // Detectar provider
+        async function detectProvider() {
+            const statusElement = document.getElementById('provider-status');
+            const textElement = document.getElementById('provider-text');
+            const detailsElement = document.getElementById('provider-details');
+            
+            // Verificar window.codecrypto primero (para evitar conflictos con MetaMask)
+            if (window.codecrypto) {
+                provider = window.codecrypto;
+                statusElement.innerHTML = '<span class="status-indicator status-connected"></span><span>Provider detectado (window.codecrypto)</span>';
+                textElement.textContent = 'Provider detectado (window.codecrypto)';
+                
+                // Solicitar cuentas automáticamente
+                try {
+                    await window.codecrypto.request({ method: 'eth_requestAccounts' });
+                    const accounts = await window.codecrypto.request({ method: 'eth_accounts' });
+                    detailsElement.textContent = JSON.stringify({
+                        isCodeCrypto: true,
+                        isConnected: typeof window.codecrypto.isConnected === 'function' ? window.codecrypto.isConnected() : true,
+                        chainId: window.codecrypto.chainId,
+                        accounts: accounts,
+                        accountsCount: accounts.length
+                    }, null, 2);
+                } catch (error) {
+                    detailsElement.textContent = JSON.stringify({
+                        isCodeCrypto: true,
+                        chainId: window.codecrypto.chainId,
+                        accounts: window.codecrypto.accounts,
+                        error: error.message
+                    }, null, 2);
+                }
+            }
+            // Verificar window.ethereum (MetaMask u otros)
+            else if (window.ethereum) {
+                provider = window.ethereum;
+                statusElement.innerHTML = '<span class="status-indicator status-connected"></span><span>Provider detectado (window.ethereum)</span>';
+                textElement.textContent = 'Provider detectado (window.ethereum)';
+                
+                // Solicitar cuentas automáticamente
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                    detailsElement.textContent = JSON.stringify({
+                        isMetaMask: window.ethereum.isMetaMask,
+                        isConnected: typeof window.ethereum.isConnected === 'function' ? window.ethereum.isConnected() : 'unknown',
+                        chainId: window.ethereum.chainId,
+                        selectedAddress: window.ethereum.selectedAddress,
+                        accounts: accounts
+                    }, null, 2);
+                } catch (error) {
+                    detailsElement.textContent = JSON.stringify({
+                        isMetaMask: window.ethereum.isMetaMask,
+                        isConnected: typeof window.ethereum.isConnected === 'function' ? window.ethereum.isConnected() : 'unknown',
+                        chainId: window.ethereum.chainId,
+                        selectedAddress: window.ethereum.selectedAddress,
+                        error: error.message
+                    }, null, 2);
+                }
+            }
+            // Verificar chrome.runtime (acceso directo a la extensión)
+            else if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.id) {
+                provider = 'chrome-runtime';
+                statusElement.innerHTML = '<span class="status-indicator status-connected"></span><span>Modo directo de extensión (chrome.runtime)</span>';
+                textElement.textContent = 'Modo directo de extensión (chrome.runtime)';
+                detailsElement.textContent = JSON.stringify({
+                    mode: 'direct-extension-access',
+                    extensionId: chrome.runtime.id,
+                    note: 'Las pruebas funcionarán usando chrome.runtime.sendMessage directamente',
+                    recommendation: 'Para probar el provider web, abre este archivo en un servidor HTTP local'
+                }, null, 2);
+            }
+            // No hay provider
+            else {
+                statusElement.innerHTML = '<span class="status-indicator status-disconnected"></span><span>No se detectó provider</span>';
+                textElement.textContent = 'No se detectó provider';
+                detailsElement.textContent = 'No se encontró window.ethereum, window.codecrypto ni chrome.runtime\n\n' +
+                    'Sugerencias:\n' +
+                    '1. Asegúrate de que la extensión esté instalada y activa\n' +
+                    '2. Para probar el provider web, sirve este archivo desde un servidor HTTP\n' +
+                    '3. Las pruebas de logs y backend seguirán funcionando si chrome.runtime está disponible';
+            }
+        }
+        
+        // Función para agregar resultados
+        function addTestResult(sectionId, type, message, data = null) {
+            const resultsDiv = document.getElementById(sectionId);
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result ${type}`;
+            
+            let content = `[${new Date().toLocaleTimeString()}] ${message}`;
+            if (data) {
+                content += `\nDatos: ${JSON.stringify(data, null, 2)}`;
+            }
+            
+            resultDiv.textContent = content;
+            resultsDiv.appendChild(resultDiv);
+            
+            // Actualizar estadísticas
+            testStats.total++;
+            if (type === 'success') {
+                testStats.successful++;
+            } else if (type === 'error') {
+                testStats.failed++;
+            }
+            updateTestStats();
+        }
+        
+        // Actualizar estadísticas
+        function updateTestStats() {
+            document.getElementById('total-tests').textContent = testStats.total;
+            document.getElementById('successful-tests').textContent = testStats.successful;
+            document.getElementById('failed-tests').textContent = testStats.failed;
+            const successRate = testStats.total > 0 ? Math.round((testStats.successful / testStats.total) * 100) : 0;
+            document.getElementById('success-rate').textContent = successRate + '%';
+        }
+        
+        // Limpiar resultados
+        function clearAllResults() {
+            const sections = ['connection-results', 'balance-results', 'sign-results', 'transaction-results', 'network-results', 'event-results', 'logs-results', 'advanced-results', 'all-tests-results'];
+            sections.forEach(sectionId => {
+                document.getElementById(sectionId).innerHTML = '';
+            });
+            testStats = { total: 0, successful: 0, failed: 0 };
+            updateTestStats();
+        }
+        
+        // Pruebas de conexión
+        function testProviderDetection() {
+            try {
+                const providerCheck = isProviderAvailable();
+                if (providerCheck.available) {
+                    const walletProvider = getWalletProvider();
+                    addTestResult('connection-results', 'success', 'Provider detectado correctamente', {
+                        provider: walletProvider === window.codecrypto ? 'window.codecrypto' : 'window.ethereum',
+                        isConnected: walletProvider.connected !== undefined ? walletProvider.connected : 'N/A',
+                        hasRequest: typeof walletProvider.request === 'function',
+                        hasConnected: 'connected' in walletProvider
+                    });
+                } else {
+                    addTestResult('connection-results', 'error', `Provider no disponible: ${providerCheck.reason}`);
+                }
+            } catch (error) {
+                addTestResult('connection-results', 'error', 'Error al detectar provider', error.message);
+            }
+        }
+        
+        function testConnection() {
+            const providerCheck = isProviderAvailable();
+            if (!providerCheck.available) {
+                addTestResult('connection-results', 'error', `Provider no disponible: ${providerCheck.reason}`);
+                return;
+            }
+            
+            const walletProvider = getWalletProvider();
+            
+            try {
+                if (walletProvider.connected) {
+                    addTestResult('connection-results', 'success', 'Provider conectado');
+                } else {
+                    addTestResult('connection-results', 'info', 'Provider no conectado, intentando conectar...');
+                    // Intentar conectar
+                    if (walletProvider.request) {
+                        walletProvider.request({ method: 'eth_requestAccounts' })
+                            .then(accounts => {
+                                addTestResult('connection-results', 'success', 'Conexión exitosa', { accounts });
+                            })
+                            .catch(error => {
+                                addTestResult('connection-results', 'error', 'Error al conectar', error.message);
+                            });
+                    } else {
+                        addTestResult('connection-results', 'error', 'Provider no tiene método request');
+                    }
+                }
+            } catch (error) {
+                addTestResult('connection-results', 'error', 'Error al verificar conexión', error.message);
+            }
+        }
+        
+        function testAccounts() {
+            const walletProvider = getWalletProvider();
+            if (!walletProvider) {
+                addTestResult('connection-results', 'error', 'No hay provider disponible');
+                return;
+            }
+            
+            try {
+                if (walletProvider.request) {
+                    walletProvider.request({ method: 'eth_accounts' })
+                        .then(accounts => {
+                            if (accounts && accounts.length > 0) {
+                                addTestResult('connection-results', 'success', 'Cuentas obtenidas', { accounts, count: accounts.length });
+                            } else {
+                                addTestResult('connection-results', 'info', 'No hay cuentas conectadas');
+                            }
+                        })
+                        .catch(error => {
+                            addTestResult('connection-results', 'error', 'Error al obtener cuentas', error.message);
+                        });
+                } else {
+                    addTestResult('connection-results', 'error', 'Provider no soporta eth_accounts');
+                }
+            } catch (error) {
+                addTestResult('connection-results', 'error', 'Error al obtener cuentas', error.message);
+            }
+        }
+        
+        function testChainId() {
+            if (!provider) {
+                addTestResult('connection-results', 'error', 'No hay provider disponible');
+                return;
+            }
+            
+            try {
+                if (provider.request) {
+                    provider.request({ method: 'eth_chainId' })
+                        .then(chainId => {
+                            addTestResult('connection-results', 'success', 'Chain ID obtenido', { chainId });
+                        })
+                        .catch(error => {
+                            addTestResult('connection-results', 'error', 'Error al obtener Chain ID', error.message);
+                        });
+                } else {
+                    addTestResult('connection-results', 'error', 'Provider no soporta eth_chainId');
+                }
+            } catch (error) {
+                addTestResult('connection-results', 'error', 'Error al obtener Chain ID', error.message);
+            }
+        }
+        
+        // Pruebas de balance
+        function testGetBalance() {
+            const providerCheck = isProviderAvailable();
+            if (!providerCheck.available) {
+                addTestResult('balance-results', 'error', `Provider no disponible: ${providerCheck.reason}`);
+                return;
+            }
+            
+            const walletProvider = getWalletProvider();
+            
+            try {
+                if (walletProvider.request) {
+                    // Primero obtener cuentas
+                    walletProvider.request({ method: 'eth_accounts' })
+                        .then(accounts => {
+                            if (accounts && accounts.length > 0) {
+                                const address = accounts[0];
+                                return walletProvider.request({ 
+                                    method: 'eth_getBalance', 
+                                    params: [address, 'latest'] 
+                                });
+                            } else {
+                                throw new Error('No hay cuentas conectadas');
+                            }
+                        })
+                        .then(balance => {
+                            addTestResult('balance-results', 'success', 'Balance obtenido', { 
+                                balance: balance,
+                                balanceEth: (parseInt(balance, 16) / Math.pow(10, 18)).toFixed(4) + ' ETH'
+                            });
+                        })
+                        .catch(error => {
+                            addTestResult('balance-results', 'error', 'Error al obtener balance', error.message);
+                        });
+                } else {
+                    addTestResult('balance-results', 'error', 'Provider no soporta eth_getBalance');
+                }
+            } catch (error) {
+                addTestResult('balance-results', 'error', 'Error al obtener balance', error.message);
+            }
+        }
+        
+        function testGetAllBalances() {
+            const providerCheck = isProviderAvailable();
+            if (!providerCheck.available) {
+                addTestResult('balance-results', 'error', `Provider no disponible: ${providerCheck.reason}`);
+                return;
+            }
+            
+            const walletProvider = getWalletProvider();
+            
+            try {
+                if (walletProvider.request) {
+                    walletProvider.request({ method: 'eth_accounts' })
+                        .then(accounts => {
+                            if (accounts && accounts.length > 0) {
+                                const balancePromises = accounts.map(address => 
+                                    walletProvider.request({ 
+                                        method: 'eth_getBalance', 
+                                        params: [address, 'latest'] 
+                                    }).then(balance => ({
+                                        address,
+                                        balance,
+                                        balanceEth: (parseInt(balance, 16) / Math.pow(10, 18)).toFixed(4) + ' ETH'
+                                    }))
+                                );
+                                
+                                return Promise.all(balancePromises);
+                            } else {
+                                throw new Error('No hay cuentas conectadas');
+                            }
+                        })
+                        .then(balances => {
+                            addTestResult('balance-results', 'success', 'Todos los balances obtenidos', { 
+                                balances,
+                                count: balances.length
+                            });
+                        })
+                        .catch(error => {
+                            addTestResult('balance-results', 'error', 'Error al obtener balances', error.message);
+                        });
+                } else {
+                    addTestResult('balance-results', 'error', 'Provider no soporta eth_getBalance');
+                }
+            } catch (error) {
+                addTestResult('balance-results', 'error', 'Error al obtener balances', error.message);
+            }
+        }
+        
+        // Pruebas de firma
+        function testSignMessage() {
+            // Usar window.codecrypto si está disponible, sino usar provider
+            const walletProvider = window.codecrypto || provider;
+            
+            if (!walletProvider) {
+                addTestResult('sign-results', 'error', 'No hay provider disponible');
+                return;
+            }
+            
+            try {
+                if (walletProvider.request) {
+                    const message = 'Hola desde CodeCrypto Wallet!';
+                    // Convertir mensaje a hex sin usar Buffer
+                    const messageHex = '0x' + Array.from(message)
+                        .map(c => c.charCodeAt(0).toString(16).padStart(2, '0'))
+                        .join('');
+                    
+                    walletProvider.request({ method: 'eth_accounts' })
+                        .then(accounts => {
+                            if (accounts && accounts.length > 0) {
+                                return walletProvider.request({
+                                    method: 'personal_sign',
+                                    params: [messageHex, accounts[0]]
+                                });
+                            } else {
+                                throw new Error('No hay cuentas conectadas');
+                            }
+                        })
+                        .then(signature => {
+                            addTestResult('sign-results', 'success', 'Mensaje firmado exitosamente', { 
+                                message,
+                                signature
+                            });
+                        })
+                        .catch(error => {
+                            addTestResult('sign-results', 'error', 'Error al firmar mensaje', error.message);
+                        });
+                } else {
+                    addTestResult('sign-results', 'error', 'Provider no soporta personal_sign');
+                }
+            } catch (error) {
+                addTestResult('sign-results', 'error', 'Error al firmar mensaje', error.message);
+            }
+        }
+        
+        function testSignTypedData() {
+            const walletProvider = getWalletProvider();
+            if (!walletProvider) {
+                addTestResult('sign-results', 'error', 'No hay provider disponible');
+                return;
+            }
+            
+            try {
+                if (walletProvider.request) {
+                    const typedData = {
+                        types: {
+                            EIP712Domain: [
+                                { name: 'name', type: 'string' },
+                                { name: 'version', type: 'string' },
+                                { name: 'chainId', type: 'uint256' },
+                                { name: 'verifyingContract', type: 'address' }
+                            ],
+                            Person: [
+                                { name: 'name', type: 'string' },
+                                { name: 'wallet', type: 'address' }
+                            ]
+                        },
+                        primaryType: 'Person',
+                        domain: {
+                            name: 'CodeCrypto Wallet',
+                            version: '1',
+                            chainId: 31337,
+                            verifyingContract: '0x0000000000000000000000000000000000000000'
+                        },
+                        message: {
+                            name: 'Usuario de Prueba',
+                            wallet: '0x0000000000000000000000000000000000000000'
+                        }
+                    };
+                    
+                    walletProvider.request({ method: 'eth_accounts' })
+                        .then(accounts => {
+                            if (accounts && accounts.length > 0) {
+                                return walletProvider.request({
+                                    method: 'eth_signTypedData_v4',
+                                    params: [accounts[0], JSON.stringify(typedData)]
+                                });
+                            } else {
+                                throw new Error('No hay cuentas conectadas');
+                            }
+                        })
+                        .then(signature => {
+                            addTestResult('sign-results', 'success', 'Datos tipados firmados exitosamente (EIP-712)', { 
+                                typedData,
+                                signature
+                            });
+                        })
+                        .catch(error => {
+                            addTestResult('sign-results', 'error', 'Error al firmar datos tipados', error.message);
+                        });
+                } else {
+                    addTestResult('sign-results', 'error', 'Provider no soporta eth_signTypedData_v4');
+                }
+            } catch (error) {
+                addTestResult('sign-results', 'error', 'Error al firmar datos tipados', error.message);
+            }
+        }
+        
+        // Pruebas de transacciones
+        function testSendTransaction() {
+            if (!provider) {
+                addTestResult('transaction-results', 'error', 'No hay provider disponible');
+                return;
+            }
+            
+            try {
+                if (provider.request) {
+                    provider.request({ method: 'eth_accounts' })
+                        .then(accounts => {
+                            if (accounts && accounts.length > 0) {
+                                const transaction = {
+                                    from: accounts[0],
+                                    to: accounts[0], // Enviar a la misma cuenta (transacción de prueba)
+                                    value: '0x0', // 0 ETH
+                                    gas: '0x5208', // 21000 gas
+                                    gasPrice: '0x3b9aca00' // 1 gwei
+                                };
+                                
+                                addTestResult('transaction-results', 'info', 'Transacción preparada (NO enviada)', { 
+                                    transaction,
+                                    note: 'Esta es solo una simulación. La transacción no se enviará realmente.'
+                                });
+                                
+                                // No enviar realmente la transacción
+                                return Promise.resolve('Simulación completada');
+                            } else {
+                                throw new Error('No hay cuentas conectadas');
+                            }
+                        })
+                        .then(result => {
+                            addTestResult('transaction-results', 'success', 'Simulación de transacción exitosa', { result });
+                        })
+                        .catch(error => {
+                            addTestResult('transaction-results', 'error', 'Error en simulación de transacción', error.message);
+                        });
+                } else {
+                    addTestResult('transaction-results', 'error', 'Provider no soporta eth_sendTransaction');
+                }
+            } catch (error) {
+                addTestResult('transaction-results', 'error', 'Error en simulación de transacción', error.message);
+            }
+        }
+        
+        function testGasEstimation() {
+            if (!provider) {
+                addTestResult('transaction-results', 'error', 'No hay provider disponible');
+                return;
+            }
+            
+            try {
+                if (provider.request) {
+                    provider.request({ method: 'eth_accounts' })
+                        .then(accounts => {
+                            if (accounts && accounts.length > 0) {
+                                const transaction = {
+                                    from: accounts[0],
+                                    to: accounts[0],
+                                    value: '0x0',
+                                    data: '0x'
+                                };
+                                
+                                return provider.request({
+                                    method: 'eth_estimateGas',
+                                    params: [transaction]
+                                });
+                            } else {
+                                throw new Error('No hay cuentas conectadas');
+                            }
+                        })
+                        .then(gasEstimate => {
+                            addTestResult('transaction-results', 'success', 'Gas estimado exitosamente', { 
+                                gasEstimate,
+                                gasEstimateDecimal: parseInt(gasEstimate, 16)
+                            });
+                        })
+                        .catch(error => {
+                            addTestResult('transaction-results', 'error', 'Error al estimar gas', error.message);
+                        });
+                } else {
+                    addTestResult('transaction-results', 'error', 'Provider no soporta eth_estimateGas');
+                }
+            } catch (error) {
+                addTestResult('transaction-results', 'error', 'Error al estimar gas', error.message);
+            }
+        }
+        
+        // Pruebas de red
+        function testNetworkInfo() {
+            if (!provider) {
+                addTestResult('network-results', 'error', 'No hay provider disponible');
+                return;
+            }
+            
+            try {
+                const networkInfo = {
+                    chainId: provider.chainId,
+                    isConnected: provider.connected !== undefined ? provider.connected : 'N/A',
+                    selectedAddress: provider.selectedAddress
+                };
+                
+                addTestResult('network-results', 'success', 'Información de red obtenida', networkInfo);
+            } catch (error) {
+                addTestResult('network-results', 'error', 'Error al obtener información de red', error.message);
+            }
+        }
+        
+        function testSwitchNetwork() {
+            if (!provider) {
+                addTestResult('network-results', 'error', 'No hay provider disponible');
+                return;
+            }
+            
+            try {
+                if (provider.request) {
+                    // Intentar cambiar a la red de Anvil (31337)
+                    provider.request({
+                        method: 'wallet_switchEthereumChain',
+                        params: [{ chainId: '0x7a69' }] // 31337 en hex
+                    })
+                    .then(result => {
+                        addTestResult('network-results', 'success', 'Red cambiada exitosamente', { result });
+                    })
+                    .catch(error => {
+                        addTestResult('network-results', 'error', 'Error al cambiar red', error.message);
+                    });
+                } else {
+                    addTestResult('network-results', 'error', 'Provider no soporta wallet_switchEthereumChain');
+                }
+            } catch (error) {
+                addTestResult('network-results', 'error', 'Error al cambiar red', error.message);
+            }
+        }
+        
+        // Pruebas de eventos
+        function testEvents() {
+            if (!provider) {
+                addTestResult('event-results', 'error', 'No hay provider disponible');
+                return;
+            }
+            
+            try {
+                let eventCount = 0;
+                
+                const handleAccountsChanged = (accounts) => {
+                    eventCount++;
+                    addTestResult('event-results', 'success', 'Evento accountsChanged recibido', { accounts, eventCount });
+                };
+                
+                const handleChainChanged = (chainId) => {
+                    eventCount++;
+                    addTestResult('event-results', 'success', 'Evento chainChanged recibido', { chainId, eventCount });
+                };
+                
+                const handleConnect = (connectInfo) => {
+                    eventCount++;
+                    addTestResult('event-results', 'success', 'Evento connect recibido', { connectInfo, eventCount });
+                };
+                
+                const handleDisconnect = (error) => {
+                    eventCount++;
+                    addTestResult('event-results', 'success', 'Evento disconnect recibido', { error, eventCount });
+                };
+                
+                // Configurar listeners
+                if (provider.on) {
+                    provider.on('accountsChanged', handleAccountsChanged);
+                    provider.on('chainChanged', handleChainChanged);
+                    provider.on('connect', handleConnect);
+                    provider.on('disconnect', handleDisconnect);
+                    
+                    addTestResult('event-results', 'success', 'Listeners de eventos configurados', { 
+                        events: ['accountsChanged', 'chainChanged', 'connect', 'disconnect'],
+                        eventCount
+                    });
+                } else {
+                    addTestResult('event-results', 'error', 'Provider no soporta eventos');
+                }
+            } catch (error) {
+                addTestResult('event-results', 'error', 'Error al configurar eventos', error.message);
+            }
+        }
+        
+        function testEventListeners() {
+            if (!provider) {
+                addTestResult('event-results', 'error', 'No hay provider disponible');
+                return;
+            }
+            
+            try {
+                if (provider.on) {
+                    addTestResult('event-results', 'success', 'Provider soporta eventos', { 
+                        hasOn: true,
+                        hasRemoveListener: !!provider.removeListener
+                    });
+                } else {
+                    addTestResult('event-results', 'error', 'Provider no soporta eventos');
+                }
+            } catch (error) {
+                addTestResult('event-results', 'error', 'Error al verificar eventos', error.message);
+            }
+        }
+        
+        // Pruebas de comunicación con background script (vía puente)
+        function testBackgroundCommunication() {
+            sendExtensionRequest('PING')
+                .then(response => {
+                    addTestResult('logs-results', 'success', 'Comunicación con background script exitosa', response);
+                })
+                .catch(error => {
+                    addTestResult('logs-results', 'error', 'Error al comunicar con background script', error.message);
+                });
+        }
+        
+        // Pruebas de logs (vía puente)
+        function testGetLogs() {
+            sendExtensionRequest('GET_LOGS')
+                .then(response => {
+                    const logs = response.logs || [];
+                    addTestResult('logs-results', 'success', `Logs obtenidos: ${logs.length} entradas`, { logs, count: logs.length });
+                })
+                .catch(error => {
+                    addTestResult('logs-results', 'error', 'Error al obtener logs', error.message);
+                });
+        }
+        
+        function testClearLogs() {
+            sendExtensionRequest('CLEAR_LOGS')
+                .then(response => {
+                    addTestResult('logs-results', 'success', 'Logs limpiados correctamente', response);
+                })
+                .catch(error => {
+                    addTestResult('logs-results', 'error', 'Error al limpiar logs', error.message);
+                });
+        }
+        
+        function testGenerateLogsAction() {
+            // Generar wallet para crear logs
+            sendExtensionRequest('GENERATE_WALLET')
+                .then(response => {
+                    addTestResult('logs-results', 'success', 'Wallet generado (logs creados)', response);
+                    setTimeout(testGetLogs, 500);
+                })
+                .catch(error => {
+                    addTestResult('logs-results', 'error', 'Error al generar wallet', error.message);
+                });
+        }
+        
+        function testLogsStorage() {
+            // Desde una página web no tenemos acceso directo a chrome.storage
+            // Pedimos al background los logs (equivalente práctico)
+            testGetLogs();
+        }
+        
+        // Pruebas avanzadas
+        function testEIP6963() {
+            try {
+                if (window.ethereum && window.ethereum.providers) {
+                    addTestResult('advanced-results', 'success', 'EIP-6963 soportado', { 
+                        providers: window.ethereum.providers.length
+                    });
+                } else {
+                    addTestResult('advanced-results', 'info', 'EIP-6963 no detectado (normal si solo hay un provider)');
+                }
+            } catch (error) {
+                addTestResult('advanced-results', 'error', 'Error al verificar EIP-6963', error.message);
+            }
+        }
+        
+        function testEIP1559() {
+            if (!provider) {
+                addTestResult('advanced-results', 'error', 'No hay provider disponible');
+                return;
+            }
+            
+            try {
+                if (provider.request) {
+                    provider.request({ method: 'eth_feeHistory', params: ['0x4', 'latest', [25, 50, 75]] })
+                        .then(feeHistory => {
+                            addTestResult('advanced-results', 'success', 'EIP-1559 soportado', { feeHistory });
+                        })
+                        .catch(error => {
+                            addTestResult('advanced-results', 'info', 'EIP-1559 no soportado o no disponible', error.message);
+                        });
+                } else {
+                    addTestResult('advanced-results', 'error', 'Provider no soporta eth_feeHistory');
+                }
+            } catch (error) {
+                addTestResult('advanced-results', 'error', 'Error al verificar EIP-1559', error.message);
+            }
+        }
+        
+        function testENS() {
+            if (!provider) {
+                addTestResult('advanced-results', 'error', 'No hay provider disponible');
+                return;
+            }
+            
+            try {
+                if (provider.request) {
+                    // Intentar resolver un nombre ENS
+                    provider.request({ method: 'eth_resolve', params: ['vitalik.eth'] })
+                        .then(address => {
+                            addTestResult('advanced-results', 'success', 'ENS soportado', { 
+                                name: 'vitalik.eth',
+                                address
+                            });
+                        })
+                        .catch(error => {
+                            addTestResult('advanced-results', 'info', 'ENS no soportado o no disponible', error.message);
+                        });
+                } else {
+                    addTestResult('advanced-results', 'error', 'Provider no soporta eth_resolve');
+                }
+            } catch (error) {
+                addTestResult('advanced-results', 'error', 'Error al verificar ENS', error.message);
+            }
+        }
+        
+        function testImportAccount() {
+            try {
+                if (chrome && chrome.runtime) {
+                    const testPrivateKey = '0x1234567890123456789012345678901234567890123456789012345678901234';
+                    const testAccountName = 'Test Account';
+                    
+                    chrome.runtime.sendMessage({ 
+                        type: 'IMPORT_ACCOUNT',
+                        data: {
+                            privateKey: testPrivateKey,
+                            accountName: testAccountName
+                        }
+                    }, (response) => {
+                        if (response && response.success) {
+                            addTestResult('advanced-results', 'success', 'Cuenta importada correctamente', {
+                                account: response.account,
+                                message: response.message
+                            });
+                        } else {
+                            addTestResult('advanced-results', 'error', 'Error al importar cuenta', response);
+                        }
+                    });
+                } else {
+                    addTestResult('advanced-results', 'error', 'chrome.runtime no disponible');
+                }
+            } catch (error) {
+                addTestResult('advanced-results', 'error', 'Error al importar cuenta', error.message);
+            }
+        }
+        
+        function testRealTransaction() {
+            try {
+                if (chrome && chrome.runtime) {
+                    addTestResult('advanced-results', 'info', 'Preparando transacción real a Anvil...');
+                    
+                    chrome.runtime.sendMessage({ 
+                        type: 'SEND_TRANSACTION',
+                        data: {
+                            transaction: {
+                                to: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+                                value: '0.01', // 0.01 ETH
+                                gas: '0x5208'
+                            }
+                        }
+                    }, (response) => {
+                        if (response && response.success) {
+                            addTestResult('advanced-results', 'success', 'Transacción real enviada a Anvil', {
+                                hash: response.hash,
+                                message: response.message
+                            });
+                            // Verificar logs de transacción
+                            setTimeout(testGetLogs, 1000);
+                        } else {
+                            addTestResult('advanced-results', 'error', 'Error al enviar transacción real', {
+                                error: response.error || 'Error desconocido'
+                            });
+                        }
+                    });
+                } else {
+                    addTestResult('advanced-results', 'error', 'chrome.runtime no disponible');
+                }
+            } catch (error) {
+                addTestResult('advanced-results', 'error', 'Error al enviar transacción real', error.message);
+            }
+        }
+        
+        // Ejecutar todas las pruebas
+        async function runAllTests() {
+            clearAllResults();
+            addTestResult('all-tests-results', 'info', 'Iniciando suite completa de pruebas...');
+            
+            const tests = [
+                { name: 'Detección de Provider', fn: testProviderDetection },
+                { name: 'Conexión', fn: testConnection },
+                { name: 'Cuentas', fn: testAccounts },
+                { name: 'Chain ID', fn: testChainId },
+                { name: 'Balance', fn: testGetBalance },
+                { name: 'Todos los Balances', fn: testGetAllBalances },
+                { name: 'Firma de Mensaje', fn: testSignMessage },
+                { name: 'Firma de Datos Tipados', fn: testSignTypedData },
+                { name: 'Simulación de Transacción', fn: testSendTransaction },
+                { name: 'Estimación de Gas', fn: testGasEstimation },
+                { name: 'Información de Red', fn: testNetworkInfo },
+                { name: 'Cambio de Red', fn: testSwitchNetwork },
+                { name: 'Configuración de Eventos', fn: testEvents },
+                { name: 'Verificación de Eventos', fn: testEventListeners },
+                { name: 'EIP-6963', fn: testEIP6963 },
+                { name: 'EIP-1559', fn: testEIP1559 },
+                { name: 'ENS', fn: testENS }
+            ];
+            
+            for (const test of tests) {
+                try {
+                    addTestResult('all-tests-results', 'info', `Ejecutando: ${test.name}`);
+                    await test.fn();
+                    // Pequeña pausa entre pruebas
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                } catch (error) {
+                    addTestResult('all-tests-results', 'error', `Error en ${test.name}`, error.message);
+                }
+            }
+            
+            addTestResult('all-tests-results', 'success', 'Suite completa de pruebas finalizada');
+        }
+    </script>
+</body>
+</html>

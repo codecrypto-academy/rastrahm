@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCrypto Wallet - Prueba de Provider</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #007BFF;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        
+        .test-button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        
+        .test-button:hover {
+            background: #0056b3;
+        }
+        
+        .test-results {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #007BFF;
+        }
+        
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        .test-result.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .test-result.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .test-result.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .provider-info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #007BFF;
+        }
+        
+        .provider-info h3 {
+            margin-top: 0;
+            color: #007BFF;
+        }
+        
+        .provider-info pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 CodeCrypto Wallet - Prueba de Provider</h1>
+        
+        <div class="provider-info">
+            <h3>📡 Estado del Provider</h3>
+            <div id="provider-status">
+                <span id="provider-text">Verificando provider...</span>
+            </div>
+            <pre id="provider-details">Cargando información del provider...</pre>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔌 Pruebas Básicas</h2>
+            <p>Pruebas básicas del provider CodeCrypto.</p>
+            <button class="test-button" onclick="testProviderDetection()">Detectar Provider</button>
+            <button class="test-button" onclick="testConnection()">Probar Conexión</button>
+            <button class="test-button" onclick="testAccounts()">Obtener Cuentas</button>
+            <button class="test-button" onclick="testGetBalance()">Obtener Balance</button>
+            <div class="test-results" id="test-results"></div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let provider = null;
+        
+        // Función helper para obtener el provider correcto
+        function getWalletProvider() {
+            return window.codecrypto || window.ethereum || provider;
+        }
+        
+        // Función para verificar si el provider está disponible y funcionando
+        function isProviderAvailable() {
+            const walletProvider = getWalletProvider();
+            if (!walletProvider) {
+                return { available: false, reason: 'No hay provider disponible' };
+            }
+            
+            // Verificar si tiene los métodos necesarios
+            if (typeof walletProvider.request !== 'function') {
+                return { available: false, reason: 'Provider no tiene método request' };
+            }
+            
+            return { available: true, reason: 'Provider disponible' };
+        }
+        
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            detectProvider();
+        });
+        
+        // Detectar provider
+        async function detectProvider() {
+            const statusElement = document.getElementById('provider-status');
+            const textElement = document.getElementById('provider-text');
+            const detailsElement = document.getElementById('provider-details');
+            
+            // Verificar window.codecrypto primero
+            if (window.codecrypto) {
+                provider = window.codecrypto;
+                statusElement.innerHTML = '<span style="color: #28a745;">✅ Provider detectado (window.codecrypto)</span>';
+                textElement.textContent = 'Provider detectado (window.codecrypto)';
+                
+                // Solicitar cuentas automáticamente
+                try {
+                    await window.codecrypto.request({ method: 'eth_requestAccounts' });
+                    const accounts = await window.codecrypto.request({ method: 'eth_accounts' });
+                    detailsElement.textContent = JSON.stringify({
+                        isCodeCrypto: true,
+                        isConnected: window.codecrypto.connected,
+                        chainId: window.codecrypto.chainId,
+                        accounts: accounts,
+                        accountsCount: accounts.length
+                    }, null, 2);
+                } catch (error) {
+                    detailsElement.textContent = JSON.stringify({
+                        isCodeCrypto: true,
+                        chainId: window.codecrypto.chainId,
+                        accounts: window.codecrypto.accounts,
+                        error: error.message
+                    }, null, 2);
+                }
+            }
+            // Verificar window.ethereum (MetaMask u otros)
+            else if (window.ethereum) {
+                provider = window.ethereum;
+                statusElement.innerHTML = '<span style="color: #28a745;">✅ Provider detectado (window.ethereum)</span>';
+                textElement.textContent = 'Provider detectado (window.ethereum)';
+                
+                // Solicitar cuentas automáticamente
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                    detailsElement.textContent = JSON.stringify({
+                        isMetaMask: window.ethereum.isMetaMask,
+                        isConnected: window.ethereum.connected,
+                        chainId: window.ethereum.chainId,
+                        selectedAddress: window.ethereum.selectedAddress,
+                        accounts: accounts
+                    }, null, 2);
+                } catch (error) {
+                    detailsElement.textContent = JSON.stringify({
+                        isMetaMask: window.ethereum.isMetaMask,
+                        isConnected: window.ethereum.connected,
+                        chainId: window.ethereum.chainId,
+                        selectedAddress: window.ethereum.selectedAddress,
+                        error: error.message
+                    }, null, 2);
+                }
+            }
+            // No hay provider
+            else {
+                statusElement.innerHTML = '<span style="color: #dc3545;">❌ No se detectó provider</span>';
+                textElement.textContent = 'No se detectó provider';
+                detailsElement.textContent = 'No se encontró window.ethereum ni window.codecrypto\n\n' +
+                    'Sugerencias:\n' +
+                    '1. Asegúrate de que la extensión esté instalada y activa\n' +
+                    '2. Recarga la página\n' +
+                    '3. Verifica que estés ejecutando desde un servidor HTTP local';
+            }
+        }
+        
+        // Función para agregar resultados
+        function addTestResult(type, message, data = null) {
+            const resultsDiv = document.getElementById('test-results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result ${type}`;
+            
+            let content = `[${new Date().toLocaleTimeString()}] ${message}`;
+            if (data) {
+                content += `\nDatos: ${JSON.stringify(data, null, 2)}`;
+            }
+            
+            resultDiv.textContent = content;
+            resultsDiv.appendChild(resultDiv);
+        }
+        
+        // Pruebas básicas
+        function testProviderDetection() {
+            try {
+                const providerCheck = isProviderAvailable();
+                if (providerCheck.available) {
+                    const walletProvider = getWalletProvider();
+                    addTestResult('success', 'Provider detectado correctamente', {
+                        provider: walletProvider === window.codecrypto ? 'window.codecrypto' : 'window.ethereum',
+                        isConnected: walletProvider.connected,
+                        hasRequest: typeof walletProvider.request === 'function',
+                        hasConnected: 'connected' in walletProvider
+                    });
+                } else {
+                    addTestResult('error', `Provider no disponible: ${providerCheck.reason}`);
+                }
+            } catch (error) {
+                addTestResult('error', 'Error al detectar provider', error.message);
+            }
+        }
+        
+        function testConnection() {
+            const providerCheck = isProviderAvailable();
+            if (!providerCheck.available) {
+                addTestResult('error', `Provider no disponible: ${providerCheck.reason}`);
+                return;
+            }
+            
+            const walletProvider = getWalletProvider();
+            
+            try {
+                if (walletProvider.connected) {
+                    addTestResult('success', 'Provider conectado');
+                } else {
+                    addTestResult('info', 'Provider no conectado, intentando conectar...');
+                    // Intentar conectar
+                    if (walletProvider.request) {
+                        walletProvider.request({ method: 'eth_requestAccounts' })
+                            .then(accounts => {
+                                addTestResult('success', 'Conexión exitosa', { accounts });
+                            })
+                            .catch(error => {
+                                addTestResult('error', 'Error al conectar', error.message);
+                            });
+                    } else {
+                        addTestResult('error', 'Provider no tiene método request');
+                    }
+                }
+            } catch (error) {
+                addTestResult('error', 'Error al verificar conexión', error.message);
+            }
+        }
+        
+        function testAccounts() {
+            const providerCheck = isProviderAvailable();
+            if (!providerCheck.available) {
+                addTestResult('error', `Provider no disponible: ${providerCheck.reason}`);
+                return;
+            }
+            
+            const walletProvider = getWalletProvider();
+            
+            try {
+                if (walletProvider.request) {
+                    walletProvider.request({ method: 'eth_accounts' })
+                        .then(accounts => {
+                            if (accounts && accounts.length > 0) {
+                                addTestResult('success', 'Cuentas obtenidas', { accounts, count: accounts.length });
+                            } else {
+                                addTestResult('info', 'No hay cuentas conectadas');
+                            }
+                        })
+                        .catch(error => {
+                            addTestResult('error', 'Error al obtener cuentas', error.message);
+                        });
+                } else {
+                    addTestResult('error', 'Provider no soporta eth_accounts');
+                }
+            } catch (error) {
+                addTestResult('error', 'Error al obtener cuentas', error.message);
+            }
+        }
+        
+        function testGetBalance() {
+            const providerCheck = isProviderAvailable();
+            if (!providerCheck.available) {
+                addTestResult('error', `Provider no disponible: ${providerCheck.reason}`);
+                return;
+            }
+            
+            const walletProvider = getWalletProvider();
+            
+            try {
+                if (walletProvider.request) {
+                    // Primero obtener cuentas
+                    walletProvider.request({ method: 'eth_accounts' })
+                        .then(accounts => {
+                            if (accounts && accounts.length > 0) {
+                                const address = accounts[0];
+                                return walletProvider.request({ 
+                                    method: 'eth_getBalance', 
+                                    params: [address, 'latest'] 
+                                });
+                            } else {
+                                throw new Error('No hay cuentas conectadas');
+                            }
+                        })
+                        .then(balance => {
+                            addTestResult('success', 'Balance obtenido', { 
+                                balance: balance,
+                                balanceEth: (parseInt(balance, 16) / Math.pow(10, 18)).toFixed(4) + ' ETH'
+                            });
+                        })
+                        .catch(error => {
+                            addTestResult('error', 'Error al obtener balance', error.message);
+                        });
+                } else {
+                    addTestResult('error', 'Provider no soporta eth_getBalance');
+                }
+            } catch (error) {
+                addTestResult('error', 'Error al obtener balance', error.message);
+            }
+        }
+    </script>
+</body>
+</html>

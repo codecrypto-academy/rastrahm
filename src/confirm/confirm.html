@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Firma - CodeCrypto Wallet</title>
+    <link rel="stylesheet" href="../popup/popup.css">
+    <style>
+        body {
+            width: 400px;
+            min-height: 300px;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .confirm-container {
+            padding: 20px;
+        }
+        
+        .confirm-header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .confirm-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .confirm-site {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .confirm-content {
+            padding: 20px 0;
+        }
+        
+        .confirm-section {
+            margin-bottom: 20px;
+        }
+        
+        .confirm-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .confirm-value {
+            font-size: 14px;
+            color: #333;
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            word-break: break-all;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .confirm-actions {
+            display: flex;
+            gap: 10px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .confirm-button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .confirm-button.approve {
+            background: #007BFF;
+            color: white;
+        }
+        
+        .confirm-button.approve:hover {
+            background: #0056b3;
+        }
+        
+        .confirm-button.reject {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .confirm-button.reject:hover {
+            background: #e0e0e0;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirm-container">
+        <div class="confirm-header">
+            <div class="confirm-title" id="confirm-title">Confirmar Firma</div>
+            <div class="confirm-site" id="confirm-site">localhost:8000</div>
+        </div>
+        
+        <div class="confirm-content">
+            <div class="warning">
+                ⚠️ Solo firma mensajes de sitios en los que confías. Firmar mensajes puede autorizar transacciones o acciones en tu nombre.
+            </div>
+            
+            <div class="confirm-section" id="account-section">
+                <div class="confirm-label">Cuenta</div>
+                <div class="confirm-value" id="confirm-account">Cargando...</div>
+            </div>
+            
+            <div class="confirm-section" id="message-section">
+                <div class="confirm-label">Mensaje</div>
+                <div class="confirm-value" id="confirm-message">Cargando...</div>
+            </div>
+            
+            <div class="confirm-section" id="data-section" style="display: none;">
+                <div class="confirm-label">Datos Tipados</div>
+                <div class="confirm-value" id="confirm-data">Cargando...</div>
+            </div>
+        </div>
+        
+        <div class="confirm-actions">
+            <button class="confirm-button reject" id="reject-button">Rechazar</button>
+            <button class="confirm-button approve" id="approve-button">Firmar</button>
+        </div>
+    </div>
+    
+    <script src="confirm.js"></script>
+</body>
+</html>

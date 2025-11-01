@@ -1,0 +1,782 @@
+/* Estilos para la ventana de conexión */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Tema oscuro */
+.theme-dark {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.theme-dark .connect-container {
+  background: #2d2d2d;
+  color: #ffffff;
+}
+
+.theme-dark .header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+}
+
+.theme-dark .header-title {
+  color: #ffffff;
+}
+
+.theme-dark .header-account,
+.theme-dark .header-network {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.theme-dark .account-address,
+.theme-dark .network-chain-id {
+  color: #e5e7eb;
+}
+
+.theme-dark .connect-content {
+  background: #2d2d2d;
+  color: #ffffff;
+}
+
+.theme-dark .connection-status,
+.theme-dark .account-section,
+.theme-dark .network-section,
+.theme-dark .actions-section,
+.theme-dark .requests-section {
+  background: #404040;
+  color: #ffffff;
+}
+
+.theme-dark .status-header h3,
+.theme-dark .account-section h3,
+.theme-dark .network-section h3,
+.theme-dark .actions-section h3,
+.theme-dark .requests-section h3 {
+  color: #ffffff;
+}
+
+.theme-dark .info-label {
+  color: #d1d5db;
+}
+
+.theme-dark .info-value {
+  color: #ffffff;
+}
+
+.theme-dark .account-selector-trigger,
+.theme-dark .network-selector-trigger,
+.theme-dark .request-item {
+  background: #404040;
+  border: 1px solid #555555;
+  color: #ffffff;
+}
+
+.theme-dark .account-selector-trigger:hover,
+.theme-dark .network-selector-trigger:hover,
+.theme-dark .request-item:hover {
+  background: #4a4a4a;
+}
+
+.theme-dark .dropdown-arrow {
+  color: #d1d5db;
+}
+
+.theme-dark .account-item,
+.theme-dark .network-item {
+  background: #404040;
+  color: #ffffff;
+}
+
+.theme-dark .account-item:hover,
+.theme-dark .network-item:hover {
+  background: #4a4a4a;
+}
+
+.theme-dark .account-item-address,
+.theme-dark .network-item-details,
+.theme-dark .request-origin {
+  color: #e5e7eb;
+}
+
+.theme-dark .no-requests {
+  background: #404040;
+  border-color: #555555;
+  color: #d1d5db;
+}
+
+.connect-container {
+  width: 400px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #007BFF 0%, #0056CC 100%);
+  color: white;
+  padding: 16px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.header-status {
+  display: flex;
+  align-items: center;
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-indicator.connected {
+  background: #28a745;
+}
+
+.status-indicator.disconnected {
+  background: #dc3545;
+}
+
+.header-account {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.account-info {
+  flex: 1;
+}
+
+.account-name {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.account-address {
+  font-size: 12px;
+  opacity: 0.8;
+  font-family: monospace;
+}
+
+.account-balance {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.header-network {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.network-info {
+  flex: 1;
+}
+
+.network-name {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.network-chain-id {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.network-status {
+  display: flex;
+  align-items: center;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #28a745;
+}
+
+/* Content */
+.connect-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Loading */
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #6c757d;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #007BFF;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.error-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.error-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.error-state h2 {
+  margin-bottom: 12px;
+  color: #dc3545;
+}
+
+.error-state p {
+  color: #6c757d;
+  line-height: 1.6;
+}
+
+/* Connection Status */
+.connection-status {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.status-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 16px;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.connected {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-badge.disconnected {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.status-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-label {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.info-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.info-value.pending {
+  color: #ffc107;
+  font-weight: 600;
+}
+
+/* Sections */
+.account-section,
+.network-section,
+.actions-section,
+.requests-section {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.account-section h3,
+.network-section h3,
+.actions-section h3,
+.requests-section h3 {
+  margin-bottom: 12px;
+  color: #333;
+  font-size: 16px;
+}
+
+/* Account Selector */
+.account-selector {
+  position: relative;
+}
+
+.account-selector-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border: 2px solid #dee2e6;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.account-selector-trigger:hover {
+  border-color: #007BFF;
+}
+
+.account-info {
+  flex: 1;
+  text-align: left;
+}
+
+.account-name {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.account-address {
+  font-size: 12px;
+  color: #6c757d;
+  font-family: monospace;
+}
+
+.account-balance {
+  font-weight: 600;
+  color: #28a745;
+  margin-right: 8px;
+}
+
+.dropdown-arrow {
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.account-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #dee2e6;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  margin-top: 4px;
+}
+
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.dropdown-header h3 {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #6c757d;
+  padding: 4px;
+}
+
+.account-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.account-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: left;
+}
+
+.account-item:hover {
+  background: #f8f9fa;
+}
+
+.account-item.active {
+  background: #e3f2fd;
+}
+
+.account-item-info {
+  flex: 1;
+}
+
+.account-item-name {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.account-item-address {
+  font-size: 12px;
+  color: #6c757d;
+  font-family: monospace;
+}
+
+.account-item-balance {
+  font-weight: 600;
+  color: #28a745;
+  margin-right: 8px;
+}
+
+.account-item-check {
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.dropdown-footer {
+  padding: 8px 12px;
+  border-top: 1px solid #dee2e6;
+  background: #f8f9fa;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+/* Network Selector */
+.network-selector {
+  position: relative;
+}
+
+.network-selector-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border: 2px solid #dee2e6;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.network-selector-trigger:hover {
+  border-color: #007BFF;
+}
+
+.network-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.network-icon {
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.network-details {
+  flex: 1;
+}
+
+.network-name {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.network-chain-id {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.network-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #dee2e6;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  margin-top: 4px;
+}
+
+.network-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.network-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: left;
+}
+
+.network-item:hover {
+  background: #f8f9fa;
+}
+
+.network-item.active {
+  background: #e3f2fd;
+}
+
+.network-item-icon {
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.network-item-info {
+  flex: 1;
+}
+
+.network-item-name {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.network-item-details {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.network-item-check {
+  color: #007BFF;
+  font-weight: bold;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.action-button {
+  padding: 12px;
+  border: 2px solid #dee2e6;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.action-button:hover {
+  border-color: #007BFF;
+  background: #f8f9ff;
+}
+
+.action-button.primary {
+  border-color: #007BFF;
+  background: #007BFF;
+  color: white;
+}
+
+.action-button.primary:hover {
+  background: #0056CC;
+}
+
+.action-button.secondary {
+  border-color: #6c757d;
+  background: #6c757d;
+  color: white;
+}
+
+.action-button.secondary:hover {
+  background: #5a6268;
+}
+
+.action-button.danger {
+  border-color: #dc3545;
+  background: #dc3545;
+  color: white;
+}
+
+.action-button.danger:hover {
+  background: #c82333;
+}
+
+/* Requests */
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.request-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+}
+
+.request-info {
+  flex: 1;
+}
+
+.request-type {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.request-origin {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.request-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.approve-button,
+.reject-button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.approve-button {
+  background: #28a745;
+  color: white;
+}
+
+.approve-button:hover {
+  background: #218838;
+}
+
+.reject-button {
+  background: #dc3545;
+  color: white;
+}
+
+.reject-button:hover {
+  background: #c82333;
+}
+
+.no-requests {
+  padding: 20px;
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
