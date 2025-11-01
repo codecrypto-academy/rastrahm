@@ -92,7 +92,14 @@ module.exports = {
   ],
   optimization: {
     splitChunks: {
-      chunks: 'all'
+      chunks: (chunk) => {
+        // No hacer code splitting para background - debe ser un solo archivo
+        return chunk.name !== 'background';
+      }
     }
+  },
+  // Configuración específica para service workers
+  experiments: {
+    topLevelAwait: true
   }
 };

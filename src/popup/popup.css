@@ -1288,22 +1288,71 @@ body {
 }
 
 .theme-dark .account-dropdown {
-  background: #404040;
-  border: 1px solid #555555;
-  color: #ffffff;
+  background: #2d2d2d !important;
+  border: 1px solid #555555 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.theme-dark .dropdown-header {
+  background: #2d2d2d !important;
+  border-bottom: 1px solid #555555 !important;
+  color: #ffffff !important;
+}
+
+.theme-dark .dropdown-header h3 {
+  color: #ffffff !important;
+}
+
+.theme-dark .close-button {
+  color: #e5e7eb !important;
+}
+
+.theme-dark .close-button:hover {
+  color: #ffffff !important;
+  background: #404040 !important;
+}
+
+.theme-dark .account-list {
+  background: #2d2d2d !important;
 }
 
 .theme-dark .account-item {
-  color: #ffffff;
+  background: #2d2d2d !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid #404040 !important;
 }
 
 .theme-dark .account-item:hover {
-  background: #4a4a4a;
+  background: #404040 !important;
+}
+
+.theme-dark .account-item.active {
+  background: #1e40af !important;
+  color: #ffffff !important;
+}
+
+.theme-dark .account-item-name {
+  color: #ffffff !important;
 }
 
 .theme-dark .account-address,
 .theme-dark .account-item-address {
-  color: #e5e7eb;
+  color: #e5e7eb !important;
+}
+
+.theme-dark .account-item-balance {
+  color: #4ade80 !important;
+}
+
+.theme-dark .account-item-check {
+  color: #60a5fa !important;
+}
+
+.theme-dark .dropdown-footer {
+  background: #2d2d2d !important;
+  border-top: 1px solid #555555 !important;
+  color: #e5e7eb !important;
 }
 
 .theme-dark .action-button {

@@ -66,7 +66,35 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
   const loadWalletState = async () => {
     try {
       setIsLoading(true);
-      const response = await chrome.runtime.sendMessage({ type: 'GET_WALLET_STATE' });
+      
+      // Verificar que el service worker esté activo - con retry
+      let retries = 3;
+      let response: any = null;
+      
+      while (retries > 0 && !response) {
+        try {
+          // Primero hacer ping
+          await chrome.runtime.sendMessage({ type: 'PING' });
+          // Si ping funciona, obtener estado
+          response = await chrome.runtime.sendMessage({ type: 'GET_WALLET_STATE' });
+          break;
+        } catch (error) {
+          console.error(`Intento fallido (${4-retries}/3):`, error);
+          retries--;
+          if (retries > 0) {
+            // Esperar un poco antes de reintentar
+            await new Promise(resolve => setTimeout(resolve, 500));
+            // Intentar activar el service worker
+            try {
+              chrome.runtime.connect({ name: 'keepalive' });
+            } catch (e) {
+              // Ignorar errores de conexión
+            }
+          } else {
+            throw error;
+          }
+        }
+      }
       
       if (response) {
         setAccounts(response.accounts || []);
@@ -292,8 +320,31 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
 
   const loadLogs = async (): Promise<void> => {
     try {
-      const response = await chrome.runtime.sendMessage({ type: 'GET_LOGS' });
-      if (response.success) {
+      // Verificar que el service worker esté activo antes de enviar mensaje
+      let retries = 3;
+      let response: any = null;
+      
+      while (retries > 0 && !response) {
+        try {
+          response = await chrome.runtime.sendMessage({ type: 'GET_LOGS' });
+          break;
+        } catch (error) {
+          console.error(`Error al cargar logs (intento ${4-retries}/3):`, error);
+          retries--;
+          if (retries > 0) {
+            await new Promise(resolve => setTimeout(resolve, 300));
+            try {
+              chrome.runtime.connect({ name: 'keepalive' });
+            } catch (e) {
+              // Ignorar errores de conexión
+            }
+          } else {
+            throw error;
+          }
+        }
+      }
+      
+      if (response && response.success) {
         setLogs(response.logs || []);
       }
     } catch (error) {

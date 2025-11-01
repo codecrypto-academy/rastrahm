@@ -1,0 +1,216 @@
+# Diagrama de Arquitectura - CodeCrypto Wallet
+## Para importar en DIA o usar como guía
+
+===========================================
+     CODECRYPTO WALLET - ARQUITECTURA
+===========================================
+
+┌─────────────────────────────────────────────────────────────────┐
+│                    CHROME EXTENSION                              │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌──────────────────────────────┐      ┌──────────────────┐  │
+│  │  Background Service Worker    │      │  chrome.storage  │  │
+│  │  (background.js)             │◄─────►│     .local        │  │
+│  │                              │      │                  │  │
+│  │  • Gestiona estado wallet    │      │  • walletData    │  │
+│  │  • Maneja mensajes           │      │  • logs          │  │
+│  │  • Conecta con Anvil         │      │                  │  │
+│  │  • Persistencia              │      └──────────────────┘  │
+│  └──────────────────────────────┘                            │
+│           ▲              │                                     │
+│           │              │                                     │
+│  ┌────────┴─────────────┴─────┐                               │
+│  │  Popup (React UI)          │                               │
+│  │  (popup.html)              │                               │
+│  │                            │                               │
+│  │  • WalletProvider          │                               │
+│  │  • Gestión de cuentas      │                               │
+│  │  • Envío transacciones     │                               │
+│  │  • Configuración           │                               │
+│  └────────────────────────────┘                               │
+│           ▲                                                     │
+│           │                                                     │
+│  ┌────────┴─────────────┐                                      │
+│  │  Content Script      │                                      │
+│  │  (content.js)        │                                      │
+│  │                      │                                      │
+│  │  • Inyecta inpage.js │                                      │
+│  │  • Intercepta        │                                      │
+│  │    window.ethereum   │                                      │
+│  │  • Comunica con BG   │                                      │
+│  └──────────┬────────────┘                                      │
+│             │                                                   │
+│             │ window.postMessage                                │
+│             ▼                                                   │
+│  ┌──────────────────────────────┐                             │
+│  │  Inpage Script               │                             │
+│  │  (inpage.js)                 │                             │
+│  │                              │                             │
+│  │  • EIP-1193 Provider         │                             │
+│  │  • window.ethereum           │                             │
+│  │  • EIP-6963 Discovery        │                             │
+│  │  • Comunicación con BG       │                             │
+│  └──────────┬───────────────────┘                             │
+│             │                                                   │
+│             │ window.ethereum                                   │
+│             ▼                                                   │
+│  ┌──────────────────────────────┐                             │
+│  │  dApp / Web Page             │                             │
+│  │                              │                             │
+│  │  • Solicita conexión         │                             │
+│  │  • eth_requestAccounts       │                             │
+│  │  • eth_sendTransaction       │                             │
+│  │  • personal_sign             │                             │
+│  │  • eth_signTypedData_v4      │                             │
+│  └──────────────────────────────┘                             │
+└─────────────────────────────────────────────────────────────────┘
+            │
+            │ HTTP/JSON-RPC
+            ▼
+┌──────────────────────────────┐
+│      Anvil (localhost:8545)  │
+│                              │
+│  • eth_getBalance            │
+│  • eth_sendTransaction        │
+│  • eth_getTransactionCount    │
+│  • eth_estimateGas           │
+│  • anvil_impersonateAccount  │
+└──────────────────────────────┘
+
+===========================================
+     FLUJO DE COMUNICACIÓN
+===========================================
+
+1. POPUP ↔ BACKGROUND
+   Método: chrome.runtime.sendMessage()
+   Mensajes: 
+   - PING
+   - GET_WALLET_STATE
+   - GENERATE_WALLET
+   - IMPORT_ACCOUNT
+   - SEND_TRANSACTION
+   - GET_LOGS
+
+2. CONTENT ↔ BACKGROUND
+   Método: chrome.runtime.sendMessage()
+   Mensajes:
+   - eth_requestAccounts
+   - eth_getBalance
+   - eth_sendTransaction
+   - personal_sign
+   - eth_signTypedData_v4
+
+3. INPAGE ↔ CONTENT
+   Método: window.postMessage()
+   Eventos:
+   - CODECRYPTO_REQUEST
+   - CODECRYPTO_RESPONSE
+
+4. DAPP ↔ INPAGE
+   Método: window.ethereum API
+   Métodos:
+   - request({ method: 'eth_requestAccounts' })
+   - request({ method: 'eth_sendTransaction' })
+   - request({ method: 'personal_sign' })
+   - request({ method: 'eth_signTypedData_v4' })
+
+5. BACKGROUND ↔ ANVIL
+   Método: HTTP/JSON-RPC
+   Endpoint: http://localhost:8545
+   Métodos:
+   - eth_getBalance
+   - eth_sendTransaction
+   - eth_getTransactionCount
+   - eth_estimateGas
+   - anvil_impersonateAccount
+
+6. BACKGROUND ↔ STORAGE
+   Método: chrome.storage.local
+   Datos:
+   - codecrypto_wallet (walletData)
+   - codecrypto_logs (logs)
+
+===========================================
+     COMPONENTES PRINCIPALES
+===========================================
+
+BACKGROUND SERVICE WORKER
+├── Estado del wallet (walletData)
+├── Listener de mensajes (onMessage)
+├── Actualización de balances (cada 5s)
+├── Gestión de transacciones
+└── Gestión de firmas
+
+POPUP (React)
+├── WalletProvider (Context)
+├── AccountSelector
+├── NetworkSelector
+├── TransactionForm
+├── LogsViewer
+└── Configuración (tema/idioma)
+
+CONTENT SCRIPT
+├── Inyección de inpage.js
+├── Interceptación de window.ethereum
+└── Puente de mensajes
+
+INPAGE SCRIPT (EIP-1193 Provider)
+├── window.ethereum
+├── EIP-6963 Discovery
+└── Eventos (accountsChanged, chainChanged)
+
+ANVIL
+├── Blockchain local
+├── Cuentas de prueba pre-fundeadas
+└── API JSON-RPC completa
+
+===========================================
+     ESTÁNDARES IMPLEMENTADOS
+===========================================
+
+✓ EIP-1193: Provider Ethereum estándar
+✓ EIP-712: Firma de datos tipados
+✓ EIP-1559: Gas dinámico
+✓ EIP-6963: Descubrimiento de providers
+✓ BIP-39: Mnemonic de 12 palabras
+✓ BIP-44: Derivación de claves HD
+
+===========================================
+     VENTANAS ADICIONALES
+===========================================
+
+CONNECT WINDOW
+├── Confirmación de conexión
+├── Detalles de cuenta
+└── Detalles de red
+
+NOTIFICATION WINDOW
+├── Logs de operaciones
+├── Notificaciones
+└── Eventos del sistema
+
+CONFIRM WINDOW
+├── Confirmación de firmas
+├── Detalles de mensaje/data
+└── Aprobación/Rechazo
+
+===========================================
+     DATOS ALMACENADOS
+===========================================
+
+chrome.storage.local
+├── codecrypto_wallet
+│   ├── accounts[]
+│   ├── currentAccount
+│   ├── currentNetwork
+│   ├── mnemonic
+│   ├── theme
+│   └── language
+└── codecrypto_logs[]
+    ├── type
+    ├── message
+    ├── data
+    ├── timestamp
+    └── level
+

@@ -339,10 +339,17 @@ const PopupContent: React.FC = () => {
     }
 
     try {
+      // Calcular la dirección en el popup usando ethers (aquí sí funciona)
+      const { ethers } = await import('ethers');
+      const wallet = new ethers.Wallet(importPrivateKey.trim());
+      const address = wallet.address;
+
+      // Enviar al background tanto la clave privada como la dirección calculada
       const response = await chrome.runtime.sendMessage({
         type: 'IMPORT_ACCOUNT',
         data: {
-          privateKey: importPrivateKey,
+          privateKey: importPrivateKey.trim(),
+          address: address, // Incluir la dirección ya calculada
           accountName: importAccountName || `Account ${Date.now()}`
         }
       });
@@ -359,7 +366,7 @@ const PopupContent: React.FC = () => {
       }
     } catch (error) {
       console.error('Error al importar cuenta:', error);
-      alert('Error al importar la cuenta');
+      alert('Error al importar la cuenta: ' + (error as Error).message);
     }
   };
 
