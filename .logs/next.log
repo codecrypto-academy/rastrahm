@@ -1,0 +1,69 @@
+
+> web@0.1.0 dev
+> next dev --webpack
+
+   ▲ Next.js 16.0.1 (webpack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.100.14:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 949ms
+ GET / 200 in 1010ms (compile: 911ms, render: 99ms)
+ GET / 200 in 22ms (compile: 4ms, render: 18ms)
+[relay] ForwardRequest recibido {
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  to: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512',
+  value: '0',
+  gas: '200000',
+  nonce: '0',
+  deadline: '1762704435',
+  data: '0x943e821600000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000'
+}
+[relay] Nonce esperado en forwarder 0
+ POST /api/relay 200 in 645ms (compile: 492ms, render: 153ms)
+[relay] ForwardRequest recibido {
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  to: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512',
+  value: '0',
+  gas: '200000',
+  nonce: '1',
+  deadline: '1762704449',
+  data: '0x943e821600000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001'
+}
+[relay] Nonce esperado en forwarder 1
+ POST /api/relay 200 in 129ms (compile: 4ms, render: 126ms)
+[relay] ForwardRequest recibido {
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  to: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512',
+  value: '0',
+  gas: '200000',
+  nonce: '2',
+  deadline: '1762704460',
+  data: '0x943e821600000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000002'
+}
+[relay] Nonce esperado en forwarder 2
+ POST /api/relay 200 in 122ms (compile: 2ms, render: 120ms)
+[relay] ForwardRequest recibido {
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  to: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512',
+  value: '0',
+  gas: '200000',
+  nonce: '3',
+  deadline: '1762704501',
+  data: '0x943e821600000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000'
+}
+[relay] Nonce esperado en forwarder 3
+ POST /api/relay 200 in 119ms (compile: 1931µs, render: 117ms)
+[relay] ForwardRequest recibido {
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  to: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512',
+  value: '0',
+  gas: '200000',
+  nonce: '4',
+  deadline: '1762704607',
+  data: '0x943e821600000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001'
+}
+[relay] Nonce esperado en forwarder 4
+ POST /api/relay 200 in 122ms (compile: 1910µs, render: 120ms)
+[?25h

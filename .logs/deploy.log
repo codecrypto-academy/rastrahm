@@ -1,0 +1,34 @@
+No files changed, compilation skipped
+Warning: Detected artifacts built from source files that no longer exist. Run `forge clean` to make sure builds are in sync with project files.
+ - /home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/dao/sc/src/Counter.sol
+ - /home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/dao/sc/test/Counter.t.sol
+ - /home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/dao/sc/script/Counter.s.sol
+Script ran successfully.
+
+== Logs ==
+  MinimalForwarder deployed at: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+  DAOVoting deployed at: 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+
+## Setting up 1 EVM.
+
+==========================
+
+Chain 31337
+
+Estimated gas price: 2.000000001 gwei
+
+Estimated total gas used for script: 4439276
+
+Estimated amount required: 0.008878552004439276 ETH
+
+==========================
+
+
+==========================
+
+ONCHAIN EXECUTION COMPLETE & SUCCESSFUL.
+
+Transactions saved to: /home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/dao/sc/broadcast/DeployForwarderAndDAO.s.sol/31337/run-latest.json
+
+Sensitive values saved to: /home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/dao/sc/cache/DeployForwarderAndDAO.s.sol/31337/run-latest.json
+
