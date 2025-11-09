@@ -8,62 +8,57 @@
    - Environments: .env.local
 
  ✓ Starting...
- ✓ Ready in 949ms
- GET / 200 in 1010ms (compile: 911ms, render: 99ms)
- GET / 200 in 22ms (compile: 4ms, render: 18ms)
+ ✓ Ready in 945ms
+ GET / 200 in 1521ms (compile: 1425ms, render: 96ms)
+ GET / 200 in 66ms (compile: 41ms, render: 25ms)
+ GET / 200 in 30ms (compile: 3ms, render: 26ms)
+ GET / 200 in 11ms (compile: 2ms, render: 9ms)
+ GET / 200 in 42ms (compile: 21ms, render: 21ms)
+ GET / 200 in 49ms (compile: 25ms, render: 24ms)
+ GET / 200 in 50ms (compile: 25ms, render: 25ms)
+ GET / 200 in 32ms (compile: 20ms, render: 12ms)
+ GET / 200 in 36ms (compile: 22ms, render: 14ms)
+ GET / 200 in 33ms (compile: 19ms, render: 14ms)
+ GET / 200 in 29ms (compile: 19ms, render: 10ms)
+ GET / 200 in 33ms (compile: 18ms, render: 15ms)
+ GET / 200 in 61ms (compile: 40ms, render: 21ms)
+ GET / 200 in 26ms (compile: 3ms, render: 24ms)
+ GET / 200 in 14ms (compile: 3ms, render: 11ms)
+ GET / 200 in 72ms (compile: 52ms, render: 20ms)
+ GET / 200 in 49ms (compile: 33ms, render: 16ms)
+ GET / 200 in 27ms (compile: 18ms, render: 9ms)
 [relay] ForwardRequest recibido {
   from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
   to: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512',
   value: '0',
   gas: '200000',
   nonce: '0',
-  deadline: '1762704435',
+  deadline: '1762721937',
   data: '0x943e821600000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000'
 }
 [relay] Nonce esperado en forwarder 0
- POST /api/relay 200 in 645ms (compile: 492ms, render: 153ms)
+ POST /api/relay 200 in 524ms (compile: 373ms, render: 151ms)
 [relay] ForwardRequest recibido {
   from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
   to: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512',
   value: '0',
-  gas: '200000',
+  gas: '300000',
   nonce: '1',
-  deadline: '1762704449',
-  data: '0x943e821600000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001'
+  deadline: '1762721964',
+  data: '0x2e8bb11900000000000000000000000015d34aaf54267db7d7c367839aaf71a00a2c6a650000000000000000000000000000000000000000000000015af1d78b58c40000000000000000000000000000000000000000000000000000000000006910f2c0'
 }
 [relay] Nonce esperado en forwarder 1
- POST /api/relay 200 in 129ms (compile: 4ms, render: 126ms)
+ POST /api/relay 200 in 126ms (compile: 1840µs, render: 124ms)
+ GET / 200 in 98ms (compile: 33ms, render: 65ms)
 [relay] ForwardRequest recibido {
   from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
   to: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512',
   value: '0',
   gas: '200000',
   nonce: '2',
-  deadline: '1762704460',
-  data: '0x943e821600000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000002'
+  deadline: '1762721977',
+  data: '0x943e821600000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001'
 }
 [relay] Nonce esperado en forwarder 2
- POST /api/relay 200 in 122ms (compile: 2ms, render: 120ms)
-[relay] ForwardRequest recibido {
-  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
-  to: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512',
-  value: '0',
-  gas: '200000',
-  nonce: '3',
-  deadline: '1762704501',
-  data: '0x943e821600000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000'
-}
-[relay] Nonce esperado en forwarder 3
- POST /api/relay 200 in 119ms (compile: 1931µs, render: 117ms)
-[relay] ForwardRequest recibido {
-  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
-  to: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512',
-  value: '0',
-  gas: '200000',
-  nonce: '4',
-  deadline: '1762704607',
-  data: '0x943e821600000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001'
-}
-[relay] Nonce esperado en forwarder 4
- POST /api/relay 200 in 122ms (compile: 1910µs, render: 120ms)
+ POST /api/relay 200 in 122ms (compile: 1441µs, render: 120ms)
 [?25h

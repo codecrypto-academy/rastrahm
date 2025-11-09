@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useWeb3 } from "@/contexts/Web3Context";
 import { ethers } from "ethers";
+import { useGaslessProposal } from "@/hooks/useGaslessProposal";
 
 const DAO_ADDRESS = process.env.NEXT_PUBLIC_DAO_ADDRESS || "";
 
@@ -35,6 +36,14 @@ export default function CreateProposal() {
   const [walletBalance, setWalletBalance] = useState<string>("0");
   const [totalBalance, setTotalBalance] = useState<string>("0");
   const [showForm, setShowForm] = useState(false);
+  const [useGaslessMode, setUseGaslessMode] = useState(true);
+
+  const {
+    createProposal: createProposalGasless,
+    loading: loadingGasless,
+    error: gaslessError,
+  } = useGaslessProposal();
+  const isSubmitting = useGaslessMode ? loadingGasless : loading;
 
   const checkCanCreate = useCallback(async () => {
     if (!provider || !account || !DAO_ADDRESS) return;
@@ -131,7 +140,6 @@ export default function CreateProposal() {
       return;
     }
 
-    setLoading(true);
     setError(null);
 
     try {
@@ -147,9 +155,17 @@ export default function CreateProposal() {
 
       const daoContract = new ethers.Contract(DAO_ADDRESS, DAO_ABI, signer);
       const amountWei = ethers.parseEther(amount);
-      
-      const tx = await daoContract.createProposal(recipient, amountWei, deadlineTimestamp);
-      await tx.wait();
+      if (useGaslessMode) {
+        await createProposalGasless({
+          recipient,
+          amountWei,
+          deadlineTimestamp,
+        });
+      } else {
+        setLoading(true);
+        const tx = await daoContract.createProposal(recipient, amountWei, deadlineTimestamp);
+        await tx.wait();
+      }
 
       // Limpiar formulario
       setRecipient("");
@@ -195,7 +211,7 @@ export default function CreateProposal() {
         <button
           type="button"
           onClick={() => setShowForm((prev) => !prev)}
-          disabled={!isConnected || !canCreate || loading}
+          disabled={!isConnected || !canCreate || isSubmitting}
           className="px-4 py-2 bg-green-500 hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white rounded-lg text-sm font-medium transition-colors"
         >
           {showForm ? "Cerrar formulario" : "Nueva propuesta"}
@@ -224,8 +240,33 @@ export default function CreateProposal() {
         </div>
       )}
 
+      {useGaslessMode && gaslessError && !error && (
+        <div className="mt-3 p-3 bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-600 text-red-700 dark:text-red-400 rounded-lg text-sm">
+          {gaslessError}
+        </div>
+      )}
+
       {showForm && isConnected && canCreate && (
         <div className="mt-6 space-y-4">
+          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+            <input
+              id="gasless-create-toggle"
+              type="checkbox"
+              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              checked={useGaslessMode}
+              disabled={loadingGasless || loading}
+              onChange={(event) => setUseGaslessMode(event.target.checked)}
+            />
+            <label htmlFor="gasless-create-toggle" className="select-none cursor-pointer">
+              Firmar sin gas (meta-transacción)
+            </label>
+          </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            {useGaslessMode
+              ? "El relayer cubre el gas usando EIP-2771."
+              : "Tu wallet enviará la transacción y pagará el gas."}
+          </p>
+
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Dirección del beneficiario
@@ -282,7 +323,7 @@ export default function CreateProposal() {
           <button
             onClick={handleCreate}
             disabled={
-              loading ||
+              isSubmitting ||
               !recipient ||
               !amount ||
               !deadline ||
@@ -290,7 +331,13 @@ export default function CreateProposal() {
             }
             className="w-full px-4 py-3 bg-green-500 hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors"
           >
-            {loading ? "Creando..." : "Crear propuesta"}
+            {useGaslessMode
+              ? loadingGasless
+                ? "Creando sin gas..."
+                : "Crear propuesta sin gas"
+              : loading
+              ? "Creando..."
+              : "Crear propuesta"}
           </button>
         </div>
       )}

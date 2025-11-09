@@ -89,6 +89,44 @@ export function buildVoteRequest(
 }
 
 /**
+ * Construye un ForwardRequest para crear una propuesta
+ */
+export function buildCreateProposalRequest(
+  from: string,
+  daoAddress: string,
+  recipient: string,
+  amountWei: bigint,
+  proposalDeadline: number | bigint,
+  nonce: bigint,
+  chainId: number
+): ForwardRequest {
+  const daoABI = [
+    "function createProposal(address recipient, uint256 amount, uint256 deadline) external",
+  ];
+  const daoInterface = new ethers.Interface(daoABI);
+  const encodedDeadline =
+    typeof proposalDeadline === "bigint" ? proposalDeadline : BigInt(proposalDeadline);
+  const data = daoInterface.encodeFunctionData("createProposal", [
+    recipient,
+    amountWei,
+    encodedDeadline,
+  ]);
+
+  const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600);
+  const gas = BigInt(300000);
+
+  return {
+    from,
+    to: daoAddress,
+    value: BigInt(0),
+    gas,
+    nonce,
+    deadline,
+    data,
+  };
+}
+
+/**
  * Firma un ForwardRequest usando EIP-712
  */
 export async function signForwardRequest(
