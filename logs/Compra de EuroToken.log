@@ -1,0 +1,658 @@
+
+> compra-stablecoin@0.1.0 dev
+> next dev
+
+  ▲ Next.js 13.5.6
+  - Local:        http://localhost:3001
+  - Environments: .env.local
+
+ ✓ Ready in 1145ms
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ○ Compiling /page ...
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+📄 Leyendo NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY directamente de .env.local
+📄 Leyendo NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY directamente de .env.local
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/sender.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/sender.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/sender.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/sender.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+🔑 Procesando compra directa: direct-0x5fff53dbd2b2593baec54b4796ba3d6e4aff297c79b3547a8636e8c8f2ebe043
+🔑 Comprador: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+🔑 Monto: 1000 centavos (10 EUR)
+✅ Compra directa procesada exitosamente: 0x6cdf801025a26b9ef130bd3fdcf7bd5a7875d835e87a2ce00bf46dbb54227c09
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+📄 Leyendo STRIPE_SECRET_KEY directamente de .env.local
+✅ STRIPE_SECRET_KEY cargada: sk_test_51SU... (longitud: 107)
+📄 Leyendo STRIPE_SECRET_KEY directamente de .env.local
+✅ STRIPE_SECRET_KEY cargada: sk_test_51SU... (longitud: 107)
+🔑 Creando Payment Intent con Stripe para compra de tokens...
+✅ Payment Intent creado exitosamente: pi_3SYxi7QxUE9YOpFf03xqUiPp
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+🔍 Verificando Payment Intent: pi_3SYxi7QxUE9YOpFf03xqUiPp
+🪙 Acuñando 10 EURT a 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266...
+✅ Tokens acuñados exitosamente: pi_3SYxi7QxUE9YOpFf03xqUiPp -> TX: 0x2c1ff2cf0f552ea3c41384fe799243ceb169353190b4eef9fbfb4b79dfa42d2b
+   Comprador: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+   Cantidad: 10 EURT
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/backend-address/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/stablecoin/compra-stablecoin/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+📄 Leyendo NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY directamente de .env.local
+📄 Leyendo NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY directamente de .env.local

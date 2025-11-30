@@ -1,0 +1,4 @@
+.env.local
+stablecoin/compra-stablecoin/app/.env.local
+stablecoin/pasarela-de-pago/app/.env.local
+tienda-online/app/.env.local

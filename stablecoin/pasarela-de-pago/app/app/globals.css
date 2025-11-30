@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+/* Asegurar que el body y html tengan fondo correcto en modo oscuro */
+html.dark {
+  background-color: rgb(17 24 39) !important; /* gray-900 */
+}
+
+html.dark body {
+  background-color: rgb(17 24 39) !important; /* gray-900 */
+  color: rgb(243 244 246) !important; /* gray-100 */
+}
+
+html:not(.dark) body {
+  background-color: rgb(249 250 251) !important; /* gray-50 */
+  color: rgb(17 24 39) !important; /* gray-900 */
+}
+
+/* Asegurar que todos los divs principales tengan fondo oscuro en modo oscuro */
+html.dark div {
+  color: inherit;
+}
+
+/* Forzar fondo oscuro en todos los contenedores principales */
+html.dark div.min-h-screen,
+html.dark main,
+html.dark div[class*="max-w"],
+html.dark div[class*="container"] {
+  background-color: rgb(17 24 39) !important; /* gray-900 */
+}
+
+html.dark header,
+html.dark footer {
+  background-color: rgb(17 24 39) !important; /* gray-900 */
+}
+
+/* Si un div tiene bg-gray-50 o bg-white, cambiarlo a gray-900 en modo oscuro */
+html.dark .bg-gray-50,
+html.dark .bg-white {
+  background-color: rgb(17 24 39) !important; /* gray-900 */
+}
+
+html.dark .from-white,
+html.dark .to-gray-50 {
+  background-color: rgb(17 24 39) !important;
+}
+
+/* Sobrescribir gradientes y fondos blancos - reglas muy agresivas */
+html.dark [class*="from-white"] {
+  background-image: none !important;
+  background: rgb(31 41 55) !important;
+}
+
+html.dark [class*="from-gray-50"] {
+  background-image: none !important;
+  background: rgb(31 41 55) !important;
+}
+
+/* Forzar fondo oscuro en cualquier elemento que tenga clases relacionadas con blanco */
+html.dark .bg-white,
+html.dark .bg-gray-50,
+html.dark [class*="bg-white"],
+html.dark [class*="bg-gray-50"] {
+  background-color: rgb(17 24 39) !important;
+  background-image: none !important;
+}
+
+/* Regla adicional: cualquier elemento dentro del body en modo oscuro que no tenga fondo específico oscuro */
+html.dark body > *:not([class*="dark:bg-"]):not([class*="bg-gray-9"]):not([class*="bg-gray-8"]) {
+  background-color: rgb(17 24 39) !important;
+}
+
+html.dark p, 
+html.dark span, 
+html.dark label,
+html.dark button:not([class*="text-"]) {
+  color: rgb(243 244 246) !important; /* gray-100 */
+}
+
+html.dark h1, 
+html.dark h2, 
+html.dark h3, 
+html.dark h4, 
+html.dark h5, 
+html.dark h6 {
+  color: rgb(255 255 255) !important;
+}
+
+/* Excepciones para elementos que ya tienen su propio color */
+html.dark .text-transparent,
+html.dark .bg-clip-text,
+html.dark [class*="text-"] {
+  color: inherit;
+}
+
+/* Regla FINAL más específica: sobrescribir gradientes en divs principales */
+html.dark body > div > div[class*="from-white"],
+html.dark body > div > div[class*="bg-gradient"][class*="from-white"],
+html.dark main div[class*="from-white"],
+html.dark main div[class*="bg-gradient"][class*="from-white"] {
+  background: rgb(31 41 55) !important;
+  background-image: none !important;
+}
+
+/* REGLA ULTRA AGRESIVA: Forzar fondo oscuro en TODOS los elementos principales */
+html.dark body,
+html.dark body > div,
+html.dark body > div > div,
+html.dark body > div > div > div {
+  background-color: rgb(17 24 39) !important;
+}
+
+/* Reglas específicas para tarjetas internas con gradientes */
+html.dark [class*="bg-gradient-to-br"][class*="from-white"],
+html.dark [class*="bg-gradient-to-r"][class*="from-white"] {
+  background: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+  background-image: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+}
+
+html.dark [class*="bg-gradient-to-br"][class*="to-gray-50"],
+html.dark [class*="bg-gradient-to-r"][class*="to-gray-50"] {
+  background: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+  background-image: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+}
+
+html.dark [class*="bg-gradient-to-br"][class*="from-gray-50"],
+html.dark [class*="bg-gradient-to-r"][class*="from-gray-50"] {
+  background: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+  background-image: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+}
+
+/* Sobrescribir tarjetas específicas - regla muy específica */
+html.dark div[class*="p-8"][class*="bg-gradient"][class*="from-white"],
+html.dark div[class*="p-6"][class*="bg-gradient"][class*="from-blue-50"],
+html.dark div[class*="p-6"][class*="bg-gradient"][class*="from-purple-50"],
+html.dark div[class*="p-5"][class*="bg-gradient"][class*="from-green-50"] {
+  background: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+  background-image: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+}
+
+/* Regla universal: cualquier gradiente que tenga colores claros (terminados en -50) */
+html.dark [class*="bg-gradient"][class*="-50"] {
+  background: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+  background-image: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+}
+
+/* Regla para gradientes con from-blue-50, from-purple-50, from-green-50, etc. */
+html.dark [class*="from-blue-50"],
+html.dark [class*="from-indigo-50"],
+html.dark [class*="from-purple-50"],
+html.dark [class*="from-pink-50"],
+html.dark [class*="from-green-50"],
+html.dark [class*="from-emerald-50"],
+html.dark [class*="from-teal-50"],
+html.dark [class*="from-cyan-50"] {
+  background-image: none !important;
+  background: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+}
+
+html.dark [class*="to-blue-50"],
+html.dark [class*="to-indigo-50"],
+html.dark [class*="to-purple-50"],
+html.dark [class*="to-pink-50"],
+html.dark [class*="to-green-50"],
+html.dark [class*="to-emerald-50"],
+html.dark [class*="to-teal-50"],
+html.dark [class*="to-cyan-50"] {
+  background-image: none !important;
+  background: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+}
+
+/* REGLA FINAL: Sobrescribir cualquier elemento con gradiente claro por estructura */
+html.dark main div div[class*="rounded"],
+html.dark main div div div[class*="rounded"] {
+  background-color: rgb(31 41 55) !important;
+  background-image: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+}
+
+/* Forzar fondo oscuro en cualquier tarjeta (divs con padding y bordes redondeados) */
+html.dark div[class*="rounded-2xl"],
+html.dark div[class*="rounded-xl"] {
+  background-color: rgb(31 41 55) !important;
+  background-image: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39)) !important;
+}
+

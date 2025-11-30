@@ -1,0 +1,730 @@
+
+> tienda-online@0.1.0 dev
+> next dev
+
+  ▲ Next.js 13.5.6
+  - Local:        http://localhost:3003
+  - Environments: .env.local
+
+ ✓ Ready in 1189ms
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ○ Compiling /page ...
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/sender.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/sender.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/sender.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/sender.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+Otorgando PAYMENT_PROCESSOR_ROLE a 0x8A791620dd6260079BF849Dc5567aDC3F2FdC318...
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+📄 Leyendo NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY directamente de .env.local
+📄 Leyendo NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY directamente de .env.local
+📄 Leyendo NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY directamente de .env.local
+📄 Leyendo NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY directamente de .env.local
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+ ⚠ ./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./app/api/check-customer/route.ts
+
+./node_modules/ws/lib/buffer-util.js
+Module not found: Can't resolve 'bufferutil' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/buffer-util.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+
+./node_modules/ws/lib/validation.js
+Module not found: Can't resolve 'utf-8-validate' in '/home/rolando/Documentos/Cursos/codecrypto/Modulo 2/Proyectos/ecommerce-rs/tienda-online/app/node_modules/ws/lib'
+
+Import trace for requested module:
+./node_modules/ws/lib/validation.js
+./node_modules/ws/lib/receiver.js
+./node_modules/ws/wrapper.mjs
+./node_modules/ethers/lib.esm/providers/ws.js
+./node_modules/ethers/lib.esm/providers/provider-websocket.js
+./node_modules/ethers/lib.esm/providers/index.js
+./node_modules/ethers/lib.esm/ethers.js
+./node_modules/ethers/lib.esm/index.js
+./contexts/WalletContext.tsx
+📄 Leyendo STRIPE_SECRET_KEY directamente de .env.local
+✅ Payment Intent creado exitosamente: pi_3SYxmSQxUE9YOpFf1hV0jeHE

@@ -1,0 +1,12 @@
+Checking for new versions...
+
+Getting ready...
+Ready! You are using Stripe API Version [2025-10-29.clover]. Your webhook signing secret is whsec_e419fe17f1424d05e372cfb86ab24efd0e28c34ebb475fb1b2e5dd9b1e09e12b (^C to quit)
+2025-11-24 19:13:51   --> payment_intent.created [evt_3SX814QxUE9YOpFf1rEOmM9L]
+2025-11-24 19:13:51  <--  [200] POST http://localhost:3003/api/webhook [evt_3SX814QxUE9YOpFf1rEOmM9L]
+2025-11-24 19:13:51   --> payment_intent.succeeded [evt_3SX814QxUE9YOpFf1UAGlIVq]
+2025-11-24 19:13:52   --> charge.succeeded [evt_3SX814QxUE9YOpFf1JRNFv3Z]
+2025-11-24 19:13:52  <--  [200] POST http://localhost:3003/api/webhook [evt_3SX814QxUE9YOpFf1JRNFv3Z]
+2025-11-24 19:13:52  <--  [500] POST http://localhost:3003/api/webhook [evt_3SX814QxUE9YOpFf1UAGlIVq]
+2025-11-24 19:13:54   --> charge.updated [evt_3SX814QxUE9YOpFf1DU2mGUx]
+2025-11-24 19:13:54  <--  [200] POST http://localhost:3003/api/webhook [evt_3SX814QxUE9YOpFf1DU2mGUx]
