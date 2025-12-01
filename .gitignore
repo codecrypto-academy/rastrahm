@@ -1,0 +1,13 @@
+# Dependencias y artefactos de Foundry
+sc/lib/
+sc/out/
+sc/cache/
+
+# Archivos de despliegue locales
+deployment-info.txt
+
+# Archivos temporales del sistema/IDE
+*.log
+.DS_Store
+.idea/
+.vscode/

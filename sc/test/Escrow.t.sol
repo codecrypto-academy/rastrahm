@@ -18,6 +18,7 @@ contract EscrowTest is Test {
     event OperationCreated(
         uint256 indexed operationId,
         address indexed user1,
+        address indexed user2,
         address tokenA,
         address tokenB,
         uint256 amountA,
@@ -102,14 +103,15 @@ contract EscrowTest is Test {
         uint256 user1BalanceBefore = tokenA.balanceOf(user1);
         uint256 escrowBalanceBefore = tokenA.balanceOf(address(escrow));
 
-        vm.expectEmit(true, true, false, true);
-        emit OperationCreated(1, user1, address(tokenA), address(tokenB), 100 ether, 200 ether);
+        vm.expectEmit(true, true, true, true);
+        emit OperationCreated(1, user1, user2, address(tokenA), address(tokenB), 100 ether, 200 ether);
 
         uint256 operationId = escrow.createOperation(
             address(tokenA),
             address(tokenB),
             100 ether,
-            200 ether
+            200 ether,
+            user2
         );
 
         assertEq(operationId, 1);
@@ -117,6 +119,7 @@ contract EscrowTest is Test {
         Escrow.Operation memory operation = escrow.getOperation(operationId);
         assertEq(operation.id, 1);
         assertEq(operation.user1, user1);
+        assertEq(operation.user2, user2);
         assertEq(operation.tokenA, address(tokenA));
         assertEq(operation.tokenB, address(tokenB));
         assertEq(operation.amountA, 100 ether);
@@ -138,10 +141,10 @@ contract EscrowTest is Test {
         tokenA.approve(address(escrow), 100 ether);
         
         vm.expectRevert("Token not allowed");
-        escrow.createOperation(address(tokenA), address(tokenC), 100 ether, 200 ether);
+        escrow.createOperation(address(tokenA), address(tokenC), 100 ether, 200 ether, user2);
         
         vm.expectRevert("Token not allowed");
-        escrow.createOperation(address(tokenC), address(tokenB), 100 ether, 200 ether);
+        escrow.createOperation(address(tokenC), address(tokenB), 100 ether, 200 ether, user2);
         
         vm.stopPrank();
     }
@@ -155,7 +158,8 @@ contract EscrowTest is Test {
             address(tokenA),
             address(tokenA),
             100 ether,
-            200 ether
+            200 ether,
+            user2
         );
         vm.stopPrank();
     }
@@ -165,10 +169,10 @@ contract EscrowTest is Test {
         tokenA.approve(address(escrow), 100 ether);
 
         vm.expectRevert("Amounts must be greater than 0");
-        escrow.createOperation(address(tokenA), address(tokenB), 0, 200 ether);
+        escrow.createOperation(address(tokenA), address(tokenB), 0, 200 ether, user2);
 
         vm.expectRevert("Amounts must be greater than 0");
-        escrow.createOperation(address(tokenA), address(tokenB), 100 ether, 0);
+        escrow.createOperation(address(tokenA), address(tokenB), 100 ether, 0, user2);
         
         vm.stopPrank();
     }
@@ -178,7 +182,7 @@ contract EscrowTest is Test {
         tokenA.approve(address(escrow), 50 ether); // Menos de lo necesario
 
         vm.expectRevert();
-        escrow.createOperation(address(tokenA), address(tokenB), 100 ether, 200 ether);
+        escrow.createOperation(address(tokenA), address(tokenB), 100 ether, 200 ether, user2);
         
         vm.stopPrank();
     }
@@ -187,9 +191,9 @@ contract EscrowTest is Test {
         vm.startPrank(user1);
         tokenA.approve(address(escrow), 500 ether);
 
-        uint256 op1 = escrow.createOperation(address(tokenA), address(tokenB), 100 ether, 200 ether);
-        uint256 op2 = escrow.createOperation(address(tokenA), address(tokenB), 150 ether, 300 ether);
-        uint256 op3 = escrow.createOperation(address(tokenA), address(tokenB), 200 ether, 400 ether);
+        uint256 op1 = escrow.createOperation(address(tokenA), address(tokenB), 100 ether, 200 ether, user2);
+        uint256 op2 = escrow.createOperation(address(tokenA), address(tokenB), 150 ether, 300 ether, user2);
+        uint256 op3 = escrow.createOperation(address(tokenA), address(tokenB), 200 ether, 400 ether, user2);
 
         assertEq(op1, 1);
         assertEq(op2, 2);
@@ -210,7 +214,8 @@ contract EscrowTest is Test {
             address(tokenA),
             address(tokenB),
             100 ether,
-            200 ether
+            200 ether,
+            user2
         );
         vm.stopPrank();
 
@@ -244,13 +249,14 @@ contract EscrowTest is Test {
             address(tokenA),
             address(tokenB),
             100 ether,
-            200 ether
+            200 ether,
+            user2
         );
 
         tokenB.mint(user1, 200 ether);
         tokenB.approve(address(escrow), 200 ether);
 
-        vm.expectRevert("Cannot complete your own operation");
+        vm.expectRevert("Only user2 can complete");
         escrow.completeOperation(operationId);
         vm.stopPrank();
     }
@@ -262,7 +268,8 @@ contract EscrowTest is Test {
             address(tokenA),
             address(tokenB),
             100 ether,
-            200 ether
+            200 ether,
+            user2
         );
         escrow.cancelOperation(operationId);
         vm.stopPrank();
@@ -282,14 +289,15 @@ contract EscrowTest is Test {
             address(tokenA),
             address(tokenB),
             100 ether,
-            200 ether
+            200 ether,
+            user2
         );
         vm.stopPrank();
 
         vm.startPrank(user2);
         tokenB.approve(address(escrow), 100 ether); // Menos de lo necesario
 
-        vm.expectRevert();
+        vm.expectRevert(); // fallo por falta de allowance o por revert interna de transferFrom
         escrow.completeOperation(operationId);
         vm.stopPrank();
     }
@@ -303,7 +311,8 @@ contract EscrowTest is Test {
             address(tokenA),
             address(tokenB),
             100 ether,
-            200 ether
+            200 ether,
+            user2
         );
 
         uint256 user1BalanceBefore = tokenA.balanceOf(user1);
@@ -331,7 +340,8 @@ contract EscrowTest is Test {
             address(tokenA),
             address(tokenB),
             100 ether,
-            200 ether
+            200 ether,
+            user2
         );
         vm.stopPrank();
 
@@ -347,7 +357,8 @@ contract EscrowTest is Test {
             address(tokenA),
             address(tokenB),
             100 ether,
-            200 ether
+            200 ether,
+            user2
         );
         escrow.cancelOperation(operationId);
 
@@ -362,8 +373,8 @@ contract EscrowTest is Test {
         vm.startPrank(user1);
         tokenA.approve(address(escrow), 500 ether);
 
-        escrow.createOperation(address(tokenA), address(tokenB), 100 ether, 200 ether);
-        escrow.createOperation(address(tokenA), address(tokenB), 150 ether, 300 ether);
+        escrow.createOperation(address(tokenA), address(tokenB), 100 ether, 200 ether, user2);
+        escrow.createOperation(address(tokenA), address(tokenB), 150 ether, 300 ether, user2);
         vm.stopPrank();
 
         Escrow.Operation[] memory allOps = escrow.getAllOperations();
@@ -386,7 +397,8 @@ contract EscrowTest is Test {
             address(tokenA),
             address(tokenB),
             100 ether,
-            200 ether
+            200 ether,
+            user2
         );
         vm.stopPrank();
 
@@ -411,7 +423,8 @@ contract EscrowTest is Test {
             address(tokenA),
             address(tokenB),
             100 ether,
-            200 ether
+            200 ether,
+            user2
         );
         vm.stopPrank();
 
@@ -440,7 +453,7 @@ contract EscrowTest is Test {
         // User1 crea operación 1
         vm.startPrank(user1);
         tokenA.approve(address(escrow), 200 ether);
-        uint256 op1 = escrow.createOperation(address(tokenA), address(tokenB), 100 ether, 200 ether);
+        uint256 op1 = escrow.createOperation(address(tokenA), address(tokenB), 100 ether, 200 ether, user2);
         vm.stopPrank();
 
         // User2 completa operación 1
@@ -449,14 +462,14 @@ contract EscrowTest is Test {
         escrow.completeOperation(op1);
         vm.stopPrank();
 
-        // User2 crea operación 2 (ahora tiene tokenA)
-        vm.startPrank(user2);
+        // User1 crea operación 2 con user2 como contraparte también
+        vm.startPrank(user1);
         tokenA.approve(address(escrow), 100 ether);
-        uint256 op2 = escrow.createOperation(address(tokenA), address(tokenB), 50 ether, 100 ether);
+        uint256 op2 = escrow.createOperation(address(tokenA), address(tokenB), 50 ether, 100 ether, user2);
         vm.stopPrank();
 
-        // User1 completa operación 2
-        vm.startPrank(user1);
+        // User2 completa operación 2
+        vm.startPrank(user2);
         tokenB.approve(address(escrow), 100 ether);
         escrow.completeOperation(op2);
         vm.stopPrank();

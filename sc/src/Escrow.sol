@@ -2,13 +2,16 @@
 pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 contract Escrow is Ownable, ReentrancyGuard {
+    using SafeERC20 for IERC20;
     struct Operation {
         uint256 id;
         address user1;
+        address user2;
         address tokenA;
         address tokenB;
         uint256 amountA;
@@ -27,6 +30,7 @@ contract Escrow is Ownable, ReentrancyGuard {
     event OperationCreated(
         uint256 indexed operationId,
         address indexed user1,
+        address indexed user2,
         address tokenA,
         address tokenB,
         uint256 amountA,
@@ -75,6 +79,7 @@ contract Escrow is Ownable, ReentrancyGuard {
      * @param tokenB Token que el usuario solicita
      * @param amountA Cantidad de tokenA a depositar
      * @param amountB Cantidad de tokenB solicitada
+     * @param user2 Dirección del segundo usuario que podrá completar la operación
      * @return operationId ID de la operación creada
      * Transfiere tokenA del usuario al contrato y guarda la operación como activa
      */
@@ -82,19 +87,23 @@ contract Escrow is Ownable, ReentrancyGuard {
         address tokenA,
         address tokenB,
         uint256 amountA,
-        uint256 amountB
+        uint256 amountB,
+        address user2
     ) external onlyAllowedToken(tokenA) onlyAllowedToken(tokenB) nonReentrant returns (uint256) {
         require(tokenA != tokenB, "Tokens must be different");
         require(amountA > 0 && amountB > 0, "Amounts must be greater than 0");
+        require(user2 != address(0), "Invalid user2 address");
+        require(user2 != msg.sender, "User2 must be different from user1");
 
-        // Transferir tokenA del usuario al contrato
-        IERC20(tokenA).transferFrom(msg.sender, address(this), amountA);
+        // Transferir tokenA del usuario al contrato (con verificación de retorno)
+        IERC20(tokenA).safeTransferFrom(msg.sender, address(this), amountA);
 
         // Crear y guardar la operación
         uint256 operationId = nextOperationId++;
         operations[operationId] = Operation({
             id: operationId,
             user1: msg.sender,
+            user2: user2,
             tokenA: tokenA,
             tokenB: tokenB,
             amountA: amountA,
@@ -105,7 +114,7 @@ contract Escrow is Ownable, ReentrancyGuard {
 
         operationIds.push(operationId);
 
-        emit OperationCreated(operationId, msg.sender, tokenA, tokenB, amountA, amountB);
+        emit OperationCreated(operationId, msg.sender, user2, tokenA, tokenB, amountA, amountB);
         return operationId;
     }
 
@@ -113,18 +122,18 @@ contract Escrow is Ownable, ReentrancyGuard {
      * @dev Completa una operación de swap
      * @param operationId ID de la operación a completar
      * Transfiere tokenB del usuario2 al usuario1 y tokenA del contrato al usuario2
-     * Solo puede completarla alguien diferente al creador
+     * Solo puede completarla la cuenta definida como user2
      */
     function completeOperation(uint256 operationId) external nonReentrant {
         Operation storage operation = operations[operationId];
         require(operation.isActive, "Operation is not active");
-        require(operation.user1 != msg.sender, "Cannot complete your own operation");
+        require(msg.sender == operation.user2, "Only user2 can complete");
 
         // Transferir tokenB del usuario2 al usuario1
-        IERC20(operation.tokenB).transferFrom(msg.sender, operation.user1, operation.amountB);
+        IERC20(operation.tokenB).safeTransferFrom(msg.sender, operation.user1, operation.amountB);
         
         // Transferir tokenA del contrato al usuario2
-        IERC20(operation.tokenA).transfer(msg.sender, operation.amountA);
+        IERC20(operation.tokenA).safeTransfer(msg.sender, operation.amountA);
 
         // Marcar operación como cerrada
         operation.isActive = false;
@@ -145,7 +154,7 @@ contract Escrow is Ownable, ReentrancyGuard {
         require(operation.user1 == msg.sender, "Only creator can cancel");
 
         // Devolver tokenA al creador
-        IERC20(operation.tokenA).transfer(msg.sender, operation.amountA);
+        IERC20(operation.tokenA).safeTransfer(msg.sender, operation.amountA);
 
         // Marcar operación como cerrada
         operation.isActive = false;
