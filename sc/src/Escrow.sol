@@ -48,8 +48,13 @@ contract Escrow is Ownable, ReentrancyGuard {
     }
 
     modifier onlyAllowedToken(address token) {
-        require(allowedTokens[token], "Token not allowed");
+        _onlyAllowedToken(token);
         _;
+    }
+
+    function _onlyAllowedToken(address token) internal pure {
+        // Solo se permite ETH nativo (address(0))
+        require(token == address(0), "Only ETH is allowed");
     }
 
     /**
@@ -89,14 +94,14 @@ contract Escrow is Ownable, ReentrancyGuard {
         uint256 amountA,
         uint256 amountB,
         address user2
-    ) external onlyAllowedToken(tokenA) onlyAllowedToken(tokenB) nonReentrant returns (uint256) {
-        require(tokenA != tokenB, "Tokens must be different");
+    ) external payable onlyAllowedToken(tokenA) onlyAllowedToken(tokenB) nonReentrant returns (uint256) {
+        // Ambos tokens deben ser ETH (address(0))
+        require(tokenA == address(0) && tokenB == address(0), "Only ETH is allowed");
         require(amountA > 0 && amountB > 0, "Amounts must be greater than 0");
         require(user2 != address(0), "Invalid user2 address");
         require(user2 != msg.sender, "User2 must be different from user1");
-
-        // Transferir tokenA del usuario al contrato (con verificación de retorno)
-        IERC20(tokenA).safeTransferFrom(msg.sender, address(this), amountA);
+        require(msg.value == amountA, "ETH amount mismatch");
+        // El ETH ya se recibió en el contrato mediante payable
 
         // Crear y guardar la operación
         uint256 operationId = nextOperationId++;
@@ -124,16 +129,20 @@ contract Escrow is Ownable, ReentrancyGuard {
      * Transfiere tokenB del usuario2 al usuario1 y tokenA del contrato al usuario2
      * Solo puede completarla la cuenta definida como user2
      */
-    function completeOperation(uint256 operationId) external nonReentrant {
+    function completeOperation(uint256 operationId) external payable nonReentrant {
         Operation storage operation = operations[operationId];
         require(operation.isActive, "Operation is not active");
         require(msg.sender == operation.user2, "Only user2 can complete");
+        require(operation.tokenA == address(0) && operation.tokenB == address(0), "Only ETH operations are supported");
 
-        // Transferir tokenB del usuario2 al usuario1
-        IERC20(operation.tokenB).safeTransferFrom(msg.sender, operation.user1, operation.amountB);
-        
-        // Transferir tokenA del contrato al usuario2
-        IERC20(operation.tokenA).safeTransfer(msg.sender, operation.amountA);
+        // Transferir tokenB (ETH) del usuario2 al usuario1
+        require(msg.value == operation.amountB, "ETH amount mismatch");
+        (bool success1, ) = payable(operation.user1).call{value: operation.amountB}("");
+        require(success1, "ETH transfer to user1 failed");
+
+        // Transferir tokenA (ETH) del contrato al usuario2
+        (bool success2, ) = payable(msg.sender).call{value: operation.amountA}("");
+        require(success2, "ETH transfer to user2 failed");
 
         // Marcar operación como cerrada
         operation.isActive = false;
@@ -152,9 +161,11 @@ contract Escrow is Ownable, ReentrancyGuard {
         Operation storage operation = operations[operationId];
         require(operation.isActive, "Operation is not active");
         require(operation.user1 == msg.sender, "Only creator can cancel");
+        require(operation.tokenA == address(0), "Only ETH operations are supported");
 
-        // Devolver tokenA al creador
-        IERC20(operation.tokenA).safeTransfer(msg.sender, operation.amountA);
+        // Devolver tokenA (ETH) al creador
+        (bool success, ) = payable(msg.sender).call{value: operation.amountA}("");
+        require(success, "ETH transfer failed");
 
         // Marcar operación como cerrada
         operation.isActive = false;
@@ -183,5 +194,9 @@ contract Escrow is Ownable, ReentrancyGuard {
     function getOperation(uint256 operationId) external view returns (Operation memory) {
         return operations[operationId];
     }
+
+    // Funciones para recibir ETH
+    receive() external payable {}
+    fallback() external payable {}
 }
 
