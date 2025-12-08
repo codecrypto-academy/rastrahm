@@ -34,8 +34,8 @@ contract DeployAllScript is Script {
     // Anvil's first default account
     address constant INITIAL_HOLDER = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266;
 
-    // 10 million EUR tokens (with 18 decimals)
-    uint256 constant INITIAL_SUPPLY = 10_000_000 * 10**18;
+    // 10 thousand EUR tokens (with 18 decimals)
+    uint256 constant INITIAL_SUPPLY = 10_000 * 10**18;
 
     // Superfluid Host on Ethereum Mainnet (available via fork)
     address constant SUPERFLUID_HOST = 0x4E583d9390082B65Bef884b629DFA426114CED6d;
